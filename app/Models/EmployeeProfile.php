@@ -60,4 +60,9 @@ class EmployeeProfile extends Model
 
         return $join_date->diffForHumans($stop_date);
     }
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendances::class, 'employee_id', 'id');
+    }
 }

@@ -69,7 +69,7 @@ class AttendancesController extends Controller
         // change key to employee_id
         $attendanceDataByDate = array_combine(array_column($attendances->toArray(), 'employee_id'), $attendanceDataByDate);
 
-        $employees = EmployeeProfile::with('user:id,fullname')->get(['id', 'user_id']);
+        $employees = EmployeeProfile::with('user:id,fullname')->whereHas('attendances')->get(['id', 'user_id']);
 
         $attendanceCount = [
             'hadir' => 0,
