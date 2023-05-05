@@ -19,13 +19,13 @@ return new class extends Migration
             $table->foreignId('employee_id')->constrained('employee_profiles')->onDelete('cascade')->onUpdate('cascade');
             $table->date('presence_date');
             $table->string('presence_status', 50);
-            $table->string('presence_desc', 50);
+            $table->string('presence_desc');
             $table->time('clock_in');
             $table->time('clock_out');
-            $table->string('location_in', 50);
-            $table->string('location_out', 50);
-            $table->string('presence_pict_in', 50);
-            $table->string('presence_pict_out', 50);
+            $table->string('location_in');
+            $table->string('location_out');
+            $table->string('presence_pict_in');
+            $table->string('presence_pict_out');
             $table->timestamps();
         });
     }

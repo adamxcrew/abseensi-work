@@ -5,10 +5,28 @@ namespace App\Http\Controllers;
 use App\Models\Attendances;
 use Illuminate\Http\Request;
 use App\Http\Requests\RequestStoreOrUpdateAttendances;
+use App\Models\EmployeeProfile;
 use Illuminate\Support\Facades\Hash;
 
 class AttendancesController extends Controller
 {
+    protected $getDatesInThisMonth = [];
+
+    public function __construct()
+    {
+        $this->getDatesInThisMonth = $this->getDatesInThisMonth();
+    }
+
+    public function getDatesInThisMonth()
+    {
+        $days = [];
+
+        for ($i = 1; $i <= date('t'); $i++) {
+            $days[] = $i;
+        }
+
+        return $days;
+    }
 
     /**
      * Display a listing of the resource.
@@ -17,10 +35,38 @@ class AttendancesController extends Controller
      */
     public function index()
     {
-        $attendances = Attendances::orderByDesc('id');
-        $attendances = $attendances->paginate(50);
+        // get attendances group by employee_id
+        $attendances = Attendances::selectRaw('employee_id, GROUP_CONCAT(presence_date) as attendance_date, GROUP_CONCAT(presence_status) as attendance_status')
+            ->groupBy('employee_id')
+            ->whereMonth('presence_date', date('m'))
+            ->whereYear('presence_date', date('Y'))
+            ->get();
 
-        return view('dashboard.attendances.index', compact('attendances'));
+        // get dates in this month
+        $datesInThisMonth = $this->getDatesInThisMonth;
+
+        $attendanceDataByDate = [];
+        foreach ($attendances as $attendanceKey => $attendance) {
+            foreach ($datesInThisMonth as $dateInMonth) {
+                $attendanceDataByDate[$attendanceKey][$dateInMonth] = null;
+
+                $attendanceDate = explode(',', $attendance->attendance_date);
+                $attendanceStatus = explode(',', $attendance->attendance_status);
+
+                foreach ($attendanceDate as $key => $date) {
+                    if ($dateInMonth == date('j', strtotime($date))) {
+                        $attendanceDataByDate[$attendanceKey][$dateInMonth] = $attendanceStatus[$key];
+                    }
+                }
+            }
+        }
+
+        // change key to employee_id
+        $attendanceDataByDate = array_combine(array_column($attendances->toArray(), 'employee_id'), $attendanceDataByDate);
+
+        $employees = EmployeeProfile::with('user:id,fullname')->get(['id', 'user_id']);
+
+        return view('dashboard.attendances.index', compact('attendances', 'datesInThisMonth', 'attendanceDataByDate', 'employees'));
     }
 
     /**

@@ -54,4 +54,13 @@ class Attendances extends Model
         return $this->belongsTo(EmployeeProfile::class, 'employee_id', 'id');
     }
 
+    protected $appends = [
+        'date',
+    ];
+
+    public function getDateAttribute()
+    {
+        return date('t', strtotime($this->presence_date));
+    }
+
 }
