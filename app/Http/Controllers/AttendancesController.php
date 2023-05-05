@@ -35,11 +35,16 @@ class AttendancesController extends Controller
      */
     public function index()
     {
+        $datePicked = request()->date ?? date('Y-m');
+
+        $monthPicked = explode('-', $datePicked)[1];
+        $yearPicked = explode('-', $datePicked)[0];
+
         // get attendances group by employee_id
         $attendances = Attendances::selectRaw('employee_id, GROUP_CONCAT(presence_date) as attendance_date, GROUP_CONCAT(presence_status) as attendance_status')
             ->groupBy('employee_id')
-            ->whereMonth('presence_date', date('m'))
-            ->whereYear('presence_date', date('Y'))
+            ->whereMonth('presence_date', $monthPicked)
+            ->whereYear('presence_date', $yearPicked)
             ->get();
 
         // get dates in this month
@@ -66,7 +71,35 @@ class AttendancesController extends Controller
 
         $employees = EmployeeProfile::with('user:id,fullname')->get(['id', 'user_id']);
 
-        return view('dashboard.attendances.index', compact('attendances', 'datesInThisMonth', 'attendanceDataByDate', 'employees'));
+        $attendanceCount = [
+            'hadir' => 0,
+            'izin' => 0,
+            'sakit' => 0,
+            'alpa' => 0,
+            'cuti' => 0,
+            'total' => 0
+        ];
+
+        foreach ($attendanceDataByDate as $attendance) {
+            foreach ($attendance as $status) {
+                $status = strtolower($status);
+                if ($status == 'hadir') {
+                    $attendanceCount['hadir']++;
+                } elseif ($status == 'izin') {
+                    $attendanceCount['izin']++;
+                } elseif ($status == 'sakit') {
+                    $attendanceCount['sakit']++;
+                } elseif ($status == 'alpa') {
+                    $attendanceCount['alpa']++;
+                } elseif ($status == 'cuti') {
+                    $attendanceCount['cuti']++;
+                }
+            }
+        }
+
+        $attendanceCount['total'] = $attendanceCount['hadir'] + $attendanceCount['izin'] + $attendanceCount['sakit'] + $attendanceCount['alpa'] + $attendanceCount['cuti'];
+
+        return view('dashboard.attendances.index', compact('attendances', 'datesInThisMonth', 'attendanceDataByDate', 'employees', 'attendanceCount', 'datePicked'));
     }
 
     /**
