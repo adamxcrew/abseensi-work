@@ -49,9 +49,8 @@ Route::middleware('auth')->group(function() {
         Route::resource('attendances', AttendancesController::class);
     });
 
-    Route::middleware('roles:admin,tu')->group(function(){
-        Route::resource('submissions', SubmissionController::class);
-    });
+    Route::get('/submissions/conditions', [SubmissionController::class, 'conditions'])->name('submissions.conditions');
+    Route::resource('submissions', SubmissionController::class);
 
     Route::middleware('roles:teacher,tu')->group(function(){
         Route::resource('presences', PresenceController::class);

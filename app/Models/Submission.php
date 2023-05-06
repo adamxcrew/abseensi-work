@@ -39,4 +39,9 @@ class Submission extends Model
     {
         return $this->belongsTo(EmployeeProfile::class, 'employee_id', 'id');
     }
+
+    public function timeoff()
+    {
+        return $this->belongsTo(TimeOffSetting::class, 'submission_type', 'id');
+    }
 }

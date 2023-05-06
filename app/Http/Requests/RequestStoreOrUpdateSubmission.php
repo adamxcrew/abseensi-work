@@ -29,8 +29,7 @@ class RequestStoreOrUpdateSubmission extends FormRequest
             'start_timeoff' => 'required|date',
             'finish_timeoff' => 'required|date',
             'submission_desc' => 'required|string',
-            'submission_file' => 'required|string',
-            'submission_status' => 'required|string',
+            'submission_file' => 'required|file',
         ];
     }
 
@@ -54,8 +53,7 @@ class RequestStoreOrUpdateSubmission extends FormRequest
             'submission_desc.string' => 'Kolom ini harus berupa string',
             'submission_file.required' => 'Kolom ini tidak boleh kosong',
             'submission_file.string' => 'Kolom ini harus berupa string',
-            'submission_status.required' => 'Kolom ini tidak boleh kosong',
-            'submission_status.string' => 'Kolom ini harus berupa string',
+            'submission_file.file' => 'Kolom ini harus berupa file'
         ];
     }
 }

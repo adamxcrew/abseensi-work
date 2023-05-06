@@ -22,32 +22,38 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Jenis Cuti</th>
-                                    <th>Deskripsi Cuti</th>
-                                    <th>Kode Cuti</th>
-                                    <th>Durasi Cuti</th>
+                                    <th>Employee Name</th>
+                                    <th>Start Timeoff</th>
+                                    <th>End Timeoff</th>
+                                    <th>Type Timeoff</th>
+                                    <th>Status Timeoff</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($submissions as $user)
+                                @forelse ($submissions as $submission)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $user->jenis_timeoff }}</td>
-                                        <td>{{ $user->description_timeoff }}</td>
-                                        <td class="text-uppercase">
-                                            {{ $user->code_timeoff }}
-                                        </td>
+                                        <td>{{ $submission->employee?->user?->fullname }}</td>
+                                        <td>{{ $submission->start_timeoff }}</td>
+                                        <td>{{ $submission->finish_timeoff }}</td>
+                                        <td>{{ $submission->timeoff->description_timeoff }} <div class="text-uppercase">({{ $submission->timeoff->code_timeoff }})</div></td>
                                         <td>
-                                            {{ $user->durasi_timeoff }} Hari
+                                            @if ($submission->submission_status == 'pending')
+                                                <span class="badge badge-warning">{{ $submission->submission_status }}</span>
+                                            @elseif ($submission->submission_status == 'approved')
+                                                <span class="badge badge-success">{{ $submission->submission_status }}</span>
+                                            @else
+                                                <span class="badge badge-danger">{{ $submission->submission_status }}</span>
+                                            @endif
                                         </td>
                                         <td class="d-flex jutify-content-center">
-                                            <a href="{{route('submissions.edit', $user->id)}}" class="btn btn-sm btn-warning"><i class="fas fa-pencil-alt"></i></a>
-                                            <form id="delete-form-{{ $user->id }}" action="{{ route('submissions.destroy', $user->id) }}" class="d-none" method="post">
+                                            <a href="{{route('submissions.show', ['submission' => $submission->uuid])}}" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+                                            <form id="delete-form-{{ $submission->uuid }}" action="{{ route('submissions.destroy', ['submission' => $submission->uuid]) }}" class="d-none" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
-                                            <button onclick="deleteForm('{{$user->id}}')" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                            <button onclick="deleteForm('{{$submission->uuid}}')" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
                                         </td>
                                     </tr>
                                 @empty
@@ -73,7 +79,7 @@
 
 @section('script')
     <script>
-        function deleteForm(id){
+        function deleteForm(uuid){
             Swal.fire({
                 title: 'Hapus data',
                 text: "Anda akan menghapus data!",
@@ -84,7 +90,7 @@
                 cancelButtonText: 'Batal!'
                 }).then((result) => {
                 if (result.isConfirmed) {
-                    $(`#delete-form-${id}`).submit()
+                    $(`#delete-form-${uuid}`).submit()
                 }
             })
         }

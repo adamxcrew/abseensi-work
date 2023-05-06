@@ -35,6 +35,15 @@ class EmployeeProfileSeeder extends Seeder
                 'join_date' => '2020-01-01',
                 'stop_date' => null,
             ],
+            [
+                'uuid' => Str::uuid(),
+                'user_id' => 3,
+                'employee_tier' => 'guru',
+                'employee_stats' => 'kontrak',
+                'institution' => 'SMK Wikrama Bogor',
+                'join_date' => '2020-01-01',
+                'stop_date' => null,
+            ],
             ];
 
         EmployeeProfile::insert($employee);

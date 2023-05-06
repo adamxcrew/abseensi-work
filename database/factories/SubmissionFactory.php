@@ -17,7 +17,7 @@ class SubmissionFactory extends Factory
     public function definition()
     {
         return [
-            'uuid',
+            'uuid' => $this->faker->uuid,
             'employee_id' => 3,
             'submission_type' => $this->faker->numberBetween(1, 5),
             // start_timeoff and finish_timeoff must be in the same month

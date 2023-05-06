@@ -29,14 +29,25 @@
             <span class="nav-link-text">Attendances</span>
         </a>
     </li>
+@endif
+
+@if (Auth::user()->role != 'admin')
     <li class="nav-item">
-        <a class="nav-link {{ $routeActive == 'submissions.index' ? 'active' : '' }}"
-            href="{{ route('submissions.index') }}">
-            <i class="fas fa-envelope text-warning"></i>
-            <span class="nav-link-text">Submissions</span>
+        <a class="nav-link {{ $routeActive == 'submissions.conditions' ? 'active' : '' }}"
+            href="{{ route('submissions.conditions') }}">
+            <i class="fas fa-clock text-primary"></i>
+            <span class="nav-link-text">Submission Conditional</span>
         </a>
     </li>
 @endif
+
+<li class="nav-item">
+    <a class="nav-link {{ $routeActive == 'submissions.index' ? 'active' : '' }}"
+        href="{{ route('submissions.index') }}">
+        <i class="fas fa-envelope text-warning"></i>
+        <span class="nav-link-text">Submissions</span>
+    </a>
+</li>
 
 <li class="nav-item">
     <a class="nav-link {{ $routeActive == 'profile' ? 'active' : '' }}" href="{{ route('profile') }}">

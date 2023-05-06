@@ -28,4 +28,9 @@ class TimeOffSetting extends Model
         'code_timeoff',
         'durasi_timeoff',
     ];
+
+    public function getCodeTimeoffAttribute($value)
+    {
+        return strtoupper($value);
+    }
 }

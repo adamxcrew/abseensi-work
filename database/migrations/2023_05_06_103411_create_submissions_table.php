@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->uuid();
             $table->unsignedBigInteger('employee_id');
-            $table->foreign('employee_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('employee_id')->references('id')->on('employee_profiles')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('submission_type');
             $table->foreign('submission_type')->references('id')->on('time_off_settings')->onDelete('cascade')->onUpdate('cascade');
             $table->date('start_timeoff');
