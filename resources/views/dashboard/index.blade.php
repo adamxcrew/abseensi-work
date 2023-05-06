@@ -5,13 +5,44 @@
 @endphp
 
 @section('breadcrumb')
-<li class="breadcrumb-item active"><a
-href="{{ route('home') }}">Dashboard</a></li>
+    <li class="breadcrumb-item active"><a href="{{ route('home') }}">Dashboard</a></li>
 @endsection
 
 @section('content')
     <div class="row">
         <div class="col-12">
+            {{-- make alert if has schedule today --}}
+            @if (!$hasScheduleToday && Auth::user()->role != 'admin')
+                <div class="alert alert-danger" role="alert">
+                    <strong>Warning!</strong> Anda belum absen masuk hari ini.
+                </div>
+
+                {{-- make button --}}
+                <div class="mb-3 mt-3">
+                    <form action="{{ route('presences.create') }}" method="post">
+                        @csrf
+
+                        <button type="submit" class="btn btn-primary w-100" name="presences_type" value="absen_masuk">Absen
+                            Masuk</button>
+                    </form>
+                </div>
+            @elseif ($hasScheduleToday && Auth::user()->role != 'admin' && !$hasScheduleToday->clock_out)
+                <div class="alert alert-danger" role="alert">
+                    <strong>Warning!</strong> Anda belum absen keluar hari ini.
+                </div>
+
+                {{-- make button --}}
+                <div class="mb-3 mt-3">
+                    <form action="{{ route('presences.create') }}" method="post">
+                        @csrf
+
+                        <button type="submit" class="btn btn-primary w-100" name="presences_type"
+                            value="absen_keluar">Absen
+                            Keluar</button>
+                    </form>
+                </div>
+            @endif
+
             <div class="card shadow">
                 <div class="card-header bg-transparent border-0 text-white">
                     <div class="row align-items-center">
@@ -189,8 +220,21 @@ href="{{ route('home') }}">Dashboard</a></li>
 
                                         @foreach ($employees as $employee)
                                             @forelse ($attendanceDataByDate as $employeeId => $attendance)
-                                                @if ($employeeId != $employee->id)
-                                                    <tr data-toggle="tooltip" data-placement="right" title="{{ $employee->user->fullname }}">
+                                                @if (Auth::user()->role == 'admin')
+                                                    @if ($employeeId != $employee->id)
+                                                        <tr data-toggle="tooltip" data-placement="right"
+                                                            title="{{ $employee->user->fullname }}">
+                                                            <td>{{ $employee->user->fullname }}</td>
+                                                            @foreach ($datesInThisMonth as $day)
+                                                                <td>
+                                                                    {{ $attendance[$day] ?? '-' }}
+                                                                </td>
+                                                            @endforeach
+                                                        </tr>
+                                                    @endif
+                                                @else
+                                                    <tr data-toggle="tooltip" data-placement="right"
+                                                        title="{{ $employee->user->fullname }}">
                                                         <td>{{ $employee->user->fullname }}</td>
                                                         @foreach ($datesInThisMonth as $day)
                                                             <td>

@@ -53,6 +53,8 @@ Route::middleware('auth')->group(function() {
     Route::resource('submissions', SubmissionController::class);
 
     Route::middleware('roles:teacher,tu')->group(function(){
-        Route::resource('presences', PresenceController::class);
+        Route::post('/presences/create', [PresenceController::class, 'create'])->name('presences.create');
+        Route::post('/presences/store', [PresenceController::class, 'store'])->name('presences.store');
+        Route::post('/presences/post-image', [PresenceController::class, 'postImage'])->name('presences.post-image');
     });
 });

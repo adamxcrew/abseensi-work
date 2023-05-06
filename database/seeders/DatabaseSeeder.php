@@ -22,8 +22,5 @@ class DatabaseSeeder extends Seeder
             EmployeeProfileSeeder::class,
             TimeOffSettingSeeder::class,
         ]);
-        // \App\Models\User::factory(10)->create();
-        Attendances::factory(20)->create();
-        Submission::factory(3)->create();
     }
 }

@@ -43,9 +43,10 @@ class RouteController extends Controller
         $attendances = Attendances::selectRaw('employee_id, GROUP_CONCAT(presence_date) as attendance_date, GROUP_CONCAT(presence_status) as attendance_status')
             ->groupBy('employee_id')
             ->whereMonth('presence_date', $monthPicked)
+            ->whereNotNull('clock_out')
             ->whereYear('presence_date', $yearPicked);
 
-        if (Auth::user()->role == 'teacher') {
+        if (Auth::user()->role != 'admin') {
             $attendances = $attendances->where('employee_id', Auth::user()->employee?->id);
         }
 
@@ -73,7 +74,12 @@ class RouteController extends Controller
         // change key to employee_id
         $attendanceDataByDate = array_combine(array_column($attendances->toArray(), 'employee_id'), $attendanceDataByDate);
 
-        $employees = EmployeeProfile::with('user:id,fullname')->whereHas('attendances')->get(['id', 'user_id']);
+        $employees = EmployeeProfile::with('user:id,fullname')->whereHas('attendances');
+        if (Auth::user()->role != 'admin') {
+            $employees = $employees->where('id', Auth::user()->employee->id);
+        }
+
+        $employees = $employees->get(['id', 'user_id']);
 
         $attendanceCount = [
             'hadir' => 0,
@@ -103,7 +109,14 @@ class RouteController extends Controller
 
         $attendanceCount['total'] = $attendanceCount['hadir'] + $attendanceCount['izin'] + $attendanceCount['sakit'] + $attendanceCount['alpa'] + $attendanceCount['cuti'];
 
-        return view('dashboard.index', compact('attendances', 'datesInThisMonth', 'attendanceDataByDate', 'employees', 'attendanceCount', 'datePicked'));
+        // check schedule today
+        $hasScheduleToday = null;
+        if (Auth::user()->role != 'admin') {
+            $hasScheduleToday = Attendances::scheduleToday(Auth::user()->employee?->id)->get()->first();
+        }
+
+
+        return view('dashboard.index', compact('attendances', 'datesInThisMonth', 'attendanceDataByDate', 'employees', 'attendanceCount', 'datePicked', 'hasScheduleToday'));
 
     }
 }

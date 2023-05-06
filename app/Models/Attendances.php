@@ -63,4 +63,10 @@ class Attendances extends Model
         return date('t', strtotime($this->presence_date));
     }
 
+    // make scope to get scedule to prsent today
+    public function scopeScheduleToday($query, $employeeId)
+    {
+        return $query->where('employee_id', $employeeId)
+            ->where('presence_date', date('Y-m-d'));
+    }
 }
