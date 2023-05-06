@@ -29,6 +29,13 @@
             <span class="nav-link-text">Attendances</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link {{ $routeActive == 'submissions.index' ? 'active' : '' }}"
+            href="{{ route('submissions.index') }}">
+            <i class="fas fa-envelope text-warning"></i>
+            <span class="nav-link-text">Submissions</span>
+        </a>
+    </li>
 @endif
 
 <li class="nav-item">

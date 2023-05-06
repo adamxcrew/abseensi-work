@@ -8,6 +8,7 @@ use App\Http\Controllers\PresenceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RouteController;
+use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\TimeOffSettingController;
 
 /*
@@ -46,6 +47,10 @@ Route::middleware('auth')->group(function() {
         Route::resource('users', UserController::class);
         Route::resource('timeoff-settings', TimeOffSettingController::class);
         Route::resource('attendances', AttendancesController::class);
+    });
+
+    Route::middleware('roles:admin,tu')->group(function(){
+        Route::resource('submissions', SubmissionController::class);
     });
 
     Route::middleware('roles:teacher,tu')->group(function(){
