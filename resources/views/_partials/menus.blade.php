@@ -16,6 +16,12 @@
         </a>
     </li>
     <li class="nav-item">
+        <a class="nav-link {{ $routeActive == 'user-logs.index' ? 'active' : '' }}" href="{{ route('user-logs.index') }}">
+            <i class="fas fa-key text-success"></i>
+            <span class="nav-link-text">User Logs</span>
+        </a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link {{ $routeActive == 'timeoff-settings.index' ? 'active' : '' }}"
             href="{{ route('timeoff-settings.index') }}">
             <i class="fas fa-clock text-primary"></i>

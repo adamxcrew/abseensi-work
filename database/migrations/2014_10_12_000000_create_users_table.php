@@ -23,6 +23,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->enum('role', ['admin','tu', 'teacher'])->default('teacher');
             $table->string('avatar')->default('avatar.png');
+            $table->string('user_log')->default(null)->nullable();
             $table->timestamps();
         });
     }

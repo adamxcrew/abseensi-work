@@ -46,16 +46,30 @@
             </div>
         </div>
         <div class="col-xl-8 order-xl-1">
+            @if ($user->user_log && $user->user_log == 'pending')
+
+            <div class="alert alert-danger" role="alert">
+                <strong>Warning!</strong> Status pengaduan anda masih <strong>menunggu konfirmasi</strong>, silahkan tunggu hingga status pengaduan anda berubah.
+            </div>
+            @elseif ($user->user_log && $user->user_log == 'rejected')
+            <div class="alert alert-danger" role="alert">
+                <strong>Warning!</strong> Status pengaduan anda <strong>ditolak</strong>, silahkan hubungi admin untuk informasi lebih lanjut.
+                <br>
+                Atau anda dapat mengirim ulang pengaduan anda dengan mengklik tombol dibawah.
+            </div>
+            @endif
             <div class="card">
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col-8">
                             <h3 class="mb-0">Edit profile </h3>
                         </div>
+                        @if ($user->user_log && $user->user_log == 'approved')
                         <div class="col-4 text-right">
                             <button onclick="$('#form-update-prof').submit()" title="Save Changes"
                                 class="btn btn-outline-primary btn-primary"><span class="fas fa-save"></span></button>
                         </div>
+                        @endif
                     </div>
                 </div>
                 <div class="card-body">
@@ -73,7 +87,7 @@
                                         is-invalid
                                         @enderror"
                                             placeholder="Username" onkeyup="regSpace(this.value)" name="name"
-                                            value="{{ $user->name }}">
+                                            value="{{ $user->name }}" @disabled(!$user->user_log || $user->user_log != 'approved')>
 
                                         @error('name')
                                             <div class="invalid-feedback d-block">
@@ -90,7 +104,7 @@
                                             class="form-control @error('email')
                                             is-invalid
                                         @enderror"
-                                            placeholder="Email@example" value="{{ $user->email }}" name="email">
+                                            placeholder="Email@example" value="{{ $user->email }}" name="email" @disabled(!$user->user_log || $user->user_log != 'approved')>
                                         @error('email')
                                             <div class="invalid-feedback d-block">
                                                 {{ $message }}
@@ -105,7 +119,7 @@
                                     <div class="form-group mb-3">
                                         <label for="password">Katasandi Baru</label>
                                         <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                            id="password" placeholder="Katasandi Akun" name="password">
+                                            id="password" placeholder="Katasandi Akun" name="password" @disabled(!$user->user_log || $user->user_log != 'approved')>
 
                                         @error('password')
                                             <div class="d-block invalid-feedback">{{ $message }}</div>
@@ -126,7 +140,7 @@
                                         <label for="nik">NIK</label>
                                         <input type="number" class="form-control @error('nik') is-invalid @enderror"
                                             id="nik" placeholder="NIK pengguna"
-                                            value="{{ old('nik', $user->personal?->nik) }}" name="nik">
+                                            value="{{ old('nik', $user->personal?->nik) }}" name="nik" @disabled(!$user->user_log || $user->user_log != 'approved')>
 
                                         @error('nik')
                                             <div class="d-block invalid-feedback">{{ $message }}</div>
@@ -140,7 +154,7 @@
                                     <div class="form-group mb-3">
                                         <label for="address">Alamat</label>
                                         <textarea class="form-control @error('address') is-invalid @enderror" id="address" placeholder="Alamat pengguna"
-                                            name="address" cols="30" rows="3">{{ old('address', $user->personal?->address) }}</textarea>
+                                            name="address" cols="30" rows="3" @disabled(!$user->user_log || $user->user_log != 'approved')>{{ old('address', $user->personal?->address) }}</textarea>
 
                                         @error('address')
                                             <div class="d-block invalid-feedback">{{ $message }}</div>
@@ -154,7 +168,7 @@
                                             class="form-control @error('birth_place') is-invalid @enderror"
                                             id="birth_place" placeholder="Tempat lahir pengguna"
                                             value="{{ old('birth_place', $user->personal?->birth_place) }}"
-                                            name="birth_place">
+                                            name="birth_place" @disabled(!$user->user_log || $user->user_log != 'approved')>
 
                                         @error('birth_place')
                                             <div class="d-block invalid-feedback">{{ $message }}</div>
@@ -168,7 +182,7 @@
                                             class="form-control @error('birth_date') is-invalid @enderror" id="birth_date"
                                             placeholder="Tanggal lahir pengguna"
                                             value="{{ old('birth_date', $user->personal?->birth_date) }}"
-                                            name="birth_date">
+                                            name="birth_date" @disabled(!$user->user_log || $user->user_log != 'approved')>
 
                                         @error('birth_date')
                                             <div class="d-block invalid-feedback">{{ $message }}</div>
@@ -185,7 +199,7 @@
                                             class="form-control @error('phone_number') is-invalid @enderror"
                                             id="phone_number" placeholder="Nomor telepon pengguna"
                                             value="{{ old('phone_number', $user->personal?->phone_number) }}"
-                                            name="phone_number">
+                                            name="phone_number" @disabled(!$user->user_log || $user->user_log != 'approved')>
 
                                         @error('phone_number')
                                             <div class="d-block invalid-feedback">{{ $message }}</div>
@@ -196,7 +210,7 @@
                                     <div class="form-group mb-3">
                                         <label for="gender">Jenis Kelamin</label>
                                         <select class="form-control @error('gender') is-invalid @enderror" id="gender"
-                                            name="gender">
+                                            name="gender" @disabled(!$user->user_log || $user->user_log != 'approved')>
                                             @php
                                                 $roles = ['male', 'female'];
                                             @endphp
@@ -220,7 +234,7 @@
                                     <div class="form-group mb-3">
                                         <label for="religion">Agama</label>
                                         <select class="form-control @error('religion') is-invalid @enderror"
-                                            id="religion" name="religion">
+                                            id="religion" name="religion" @disabled(!$user->user_log || $user->user_log != 'approved')>
                                             @php
                                                 $roles = ['islam', 'kristen', 'buddha', 'katolik', 'konghucu'];
                                             @endphp
@@ -244,7 +258,7 @@
                                         <input type="text"
                                             class="form-control @error('marriage') is-invalid @enderror" id="marriage"
                                             placeholder="Status Perkawinan pengguna"
-                                            value="{{ old('marriage', $user->personal?->marriage) }}" name="marriage">
+                                            value="{{ old('marriage', $user->personal?->marriage) }}" name="marriage" @disabled(!$user->user_log || $user->user_log != 'approved')>
 
                                         @error('marriage')
                                             <div class="d-block invalid-feedback">{{ $message }}</div>
@@ -353,6 +367,14 @@
                         </div>
                         <hr class="my-4" />
                     </form>
+
+                    @if (!$user->user_log || $user->user_log == 'rejected')
+
+                    <form id="submission-form" action="{{ route('user-logs.store') }}" class="d-none" method="post">
+                        @csrf
+                    </form>
+                    <button onclick="$('#submission-form').submit()" class="btn w-100 btn-warning">Ajukan permohonan edit data</button>
+                    @endif
                 </div>
             </div>
         </div>

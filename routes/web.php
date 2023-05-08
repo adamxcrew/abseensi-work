@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\TimeOffSettingController;
+use App\Http\Controllers\UserLogsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,14 +38,9 @@ Route::middleware('auth')->group(function() {
         Route::put('/change-profile', [ProfileController::class, 'changeProfile'])->name('change-profile');
     }); # profile group
 
-    # ------ DataTables routes ------ #
-    Route::prefix('data')->name('datatable.')->group(function(){
-        Route::get('/users', [DataTableController::class, 'getUsers'])->name('users');
-    });
-
-
     Route::middleware('roles:admin')->group(function(){
         Route::resource('users', UserController::class);
+        Route::resource('user-logs', UserLogsController::class);
         Route::resource('timeoff-settings', TimeOffSettingController::class);
         Route::resource('attendances', AttendancesController::class);
     });
@@ -56,5 +52,7 @@ Route::middleware('auth')->group(function() {
         Route::post('/presences/create', [PresenceController::class, 'create'])->name('presences.create');
         Route::post('/presences/store', [PresenceController::class, 'store'])->name('presences.store');
         Route::post('/presences/post-image', [PresenceController::class, 'postImage'])->name('presences.post-image');
+
+        Route::post('/user-logs/store', [UserLogsController::class, 'store'])->name('user-logs.store');
     });
 });

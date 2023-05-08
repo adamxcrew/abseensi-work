@@ -59,7 +59,8 @@ class ProfileController extends Controller
     {
         try {
             $validated = $request->only(['name', 'email']) + [
-                'updated_at' => date(now())
+                'updated_at' => date(now()),
+                'user_log' => null,
             ];
 
             $user = User::findOrFail(Auth::id());
