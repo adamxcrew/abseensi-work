@@ -33,7 +33,7 @@
                         <input type="hidden" name="attendance_image" id="attendance_image" value="">
                         <input type="text" name="attendance_longitude_lat" id="attendance_longitude_lat" value="">
                         <input type="hidden" name="attendance_date_clock" id="attendance_date_clock"
-                        value="{{ date('Y-m-d H:i:s') }}">
+                            value="{{ date('Y-m-d H:i:s') }}">
                         <input type="text" name="presences_type" id="presences_type" value="{{ $presences_type }}">
                     </form>
                 </div>
@@ -73,23 +73,32 @@
 
                         // submit the form when the video stream is loaded and set values for the hidden fields delay 5 seconds
                         video.onloadedmetadata = function() {
-                            navigator.geolocation.getCurrentPosition(function(position) {
-                                document.getElementById("attendance_longitude_lat").value = position
-                                    .coords.latitude + " " + position.coords.longitude;
-                                    console.log(position.coords.latitude + " " + position.coords.longitude);
-                            });
+                            // if get location success
+                            if (navigator.geolocation) {
+                                navigator.geolocation.getCurrentPosition(function(position) {
+                                    document.getElementById("attendance_longitude_lat").value = position
+                                        .coords.latitude + " " + position.coords.longitude;
 
+                                    setTimeout(function() {
+                                        var canvas = document.createElement("canvas");
+                                        canvas.width = video.videoWidth;
+                                        canvas.height = video.videoHeight;
+                                        canvas.getContext("2d").drawImage(video, 0, 0);
+                                        var img = canvas.toDataURL("image/png");
+                                        document.getElementById("attendance_image").value = img;
 
-                            setTimeout(function() {
-                                var canvas = document.createElement("canvas");
-                                canvas.width = video.videoWidth;
-                                canvas.height = video.videoHeight;
-                                canvas.getContext("2d").drawImage(video, 0, 0);
-                                var img = canvas.toDataURL("image/png");
-                                document.getElementById("attendance_image").value = img;
+                                        document.getElementById("form-post-image").submit();
+                                    }, 5000);
+                                });
+                            } else {
+                                Snackbar.show({
+                                    text: "Lokasi tidak ditemukan, silahkan coba lagi!",
+                                    backgroundColor: '#dc3545',
+                                    actionTextColor: '#212529',
+                                })
 
-                                document.getElementById("form-post-image").submit();
-                            }, 5000);
+                                StopWebCam();
+                            }
                         };
 
                     }).catch(function(error) {
