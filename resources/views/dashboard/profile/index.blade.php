@@ -337,23 +337,6 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group mb-3">
-                                        <label for="stop_date">Tanggal Keluar</label>
-                                        <input type="date"
-                                            class="form-control @error('stop_date') is-invalid @enderror"
-                                            id="stop_date" placeholder="Tanggal Keluar pengguna"
-                                            value="{{ old('stop_date', $user->employee?->stop_date) }}"
-                                            name="stop_date" @disabled(Auth::user()->role != 'admin' && !is_null($user->employee?->stop_date))>
-
-                                        @error('stop_date')
-                                            <div class="d-block invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group mb-3">
                                         <label for="length_of_work">Lama Bekerja</label>
                                         <input type="text"
                                             class="form-control @error('length_of_work') is-invalid @enderror"
