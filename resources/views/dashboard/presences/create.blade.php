@@ -73,7 +73,6 @@
 
                         // submit the form when the video stream is loaded and set values for the hidden fields delay 5 seconds
                         video.onloadedmetadata = function() {
-                            // if get location success
                             if (navigator.geolocation) {
                                 navigator.geolocation.getCurrentPosition(function(position) {
                                     document.getElementById("attendance_longitude_lat").value = position
