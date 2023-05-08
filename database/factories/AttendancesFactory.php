@@ -17,7 +17,7 @@ class AttendancesFactory extends Factory
     public function definition()
     {
         return [
-            'employee_id' => $this->faker->numberBetween(1, 2),
+            'employee_id' => $this->faker->numberBetween(2, 3),
             // presence date in this month only
             'presence_date' => $this->faker->dateTimeBetween('-1 month', '+1 month'),
             'presence_status' => $this->faker->randomElement(['Hadir', 'Izin', 'Sakit', 'Cuti', 'Alpa']),

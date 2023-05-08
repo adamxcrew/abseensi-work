@@ -49,11 +49,14 @@
                                         </td>
                                         <td class="d-flex jutify-content-center">
                                             <a href="{{route('submissions.show', ['submission' => $submission->uuid])}}" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+
+                                            @if (Auth::user()->role == 'admin')
                                             <form id="delete-form-{{ $submission->uuid }}" action="{{ route('submissions.destroy', ['submission' => $submission->uuid]) }}" class="d-none" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
                                             <button onclick="deleteForm('{{$submission->uuid}}')" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty

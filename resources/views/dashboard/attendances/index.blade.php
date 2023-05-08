@@ -184,20 +184,15 @@
                                 </thead>
                                 <tbody>
                                     @if (count($attendanceDataByDate) != 0)
-
-                                        @foreach ($employees as $employee)
-                                            @forelse ($attendanceDataByDate as $employeeId => $attendance)
-                                                @if ($employeeId != $employee->id)
-                                                    <tr data-toggle="tooltip" data-placement="right" title="{{ $employee->user->fullname }}">
-                                                        <td>{{ $employee->user->fullname }}</td>
-                                                        @foreach ($datesInThisMonth as $day)
-                                                            <td>
-                                                                {{ $attendance[$day] ?? '-' }}
-                                                            </td>
-                                                        @endforeach
-                                                    </tr>
-                                                @endif
-                                            @endforeach
+                                        @foreach ($attendanceDataByDate as $employeeName => $attendanceData)
+                                            <tr>
+                                                <td>{{ $employeeName }}</td>
+                                                @foreach ($datesInThisMonth as $day)
+                                                    <td>
+                                                        {{ $attendanceData[$day] ?? '-'  }}
+                                                    </td>
+                                                @endforeach
+                                            </tr>
                                         @endforeach
                                     @else
                                         <tr>

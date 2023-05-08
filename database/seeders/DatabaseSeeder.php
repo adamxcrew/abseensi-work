@@ -22,5 +22,8 @@ class DatabaseSeeder extends Seeder
             EmployeeProfileSeeder::class,
             TimeOffSettingSeeder::class,
         ]);
+
+        // run factories
+        // Attendances::factory(40)->create();
     }
 }

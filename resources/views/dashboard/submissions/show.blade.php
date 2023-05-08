@@ -126,7 +126,7 @@
 
                     <div class="row">
                         <div class="col-6">
-                            @if ($submission->submission_status == 'pending')
+                            @if ($submission->submission_status == 'pending' && Auth::user()->role == 'admin')
                             {{-- button reject and approve --}}
                             <button type="submit" name="submission_status" value="approved" class="btn btn-sm btn-success">Approve</button>
                             <button type="submit" name="submission_status" value="rejected" class="btn btn-sm btn-danger">Reject</button>

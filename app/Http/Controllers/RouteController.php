@@ -36,87 +36,72 @@ class RouteController extends Controller
     {
         $datePicked = request()->date ?? date('Y-m');
 
-        $monthPicked = explode('-', $datePicked)[1];
-        $yearPicked = explode('-', $datePicked)[0];
+        // ambil data attendance dan digroup berdasarkan employee_id dan distinct
+        $attendances = Attendances::distinct()
+        ->whereYear('presence_date', date('Y', strtotime($datePicked)))
+        ->whereMonth('presence_date', date('m', strtotime($datePicked)))
+        ->when(Auth::user()->role == 'teacher', function ($query) {
+            return $query->where('employee_id', Auth::user()->employee->id);
+        })
+        ->whereNotNull('clock_out')
+        ->get()->groupBy('employee.user.fullname');
 
-        // get attendances group by employee_id
-        $attendances = Attendances::selectRaw('employee_id, GROUP_CONCAT(presence_date) as attendance_date, GROUP_CONCAT(presence_status) as attendance_status')
-            ->groupBy('employee_id')
-            ->whereMonth('presence_date', $monthPicked)
-            ->whereNotNull('clock_out')
-            ->whereYear('presence_date', $yearPicked);
 
-        if (Auth::user()->role != 'admin') {
-            $attendances = $attendances->where('employee_id', Auth::user()->employee?->id);
-        }
-
-        $attendances = $attendances->get();
-
-        // get dates in this month
         $datesInThisMonth = $this->getDatesInThisMonth;
 
         $attendanceDataByDate = [];
-        foreach ($attendances as $attendanceKey => $attendance) {
-            foreach ($datesInThisMonth as $dateInMonth) {
-                $attendanceDataByDate[$attendanceKey][$dateInMonth] = null;
-
-                $attendanceDate = explode(',', $attendance->attendance_date);
-                $attendanceStatus = explode(',', $attendance->attendance_status);
-
-                foreach ($attendanceDate as $key => $date) {
-                    if ($dateInMonth == date('j', strtotime($date))) {
-                        $attendanceDataByDate[$attendanceKey][$dateInMonth] = $attendanceStatus[$key];
-                    }
-                }
-            }
-        }
-
-        // change key to employee_id
-        $attendanceDataByDate = array_combine(array_column($attendances->toArray(), 'employee_id'), $attendanceDataByDate);
-
-        $employees = EmployeeProfile::with('user:id,fullname')->whereHas('attendances');
-        if (Auth::user()->role != 'admin') {
-            $employees = $employees->where('id', Auth::user()->employee->id);
-        }
-
-        $employees = $employees->get(['id', 'user_id']);
-
         $attendanceCount = [
             'hadir' => 0,
             'izin' => 0,
             'sakit' => 0,
             'alpa' => 0,
             'cuti' => 0,
-            'total' => 0
+            'total' => 0,
         ];
 
-        foreach ($attendanceDataByDate as $attendance) {
-            foreach ($attendance as $status) {
-                $status = strtolower($status);
-                if ($status == 'hadir') {
-                    $attendanceCount['hadir']++;
-                } elseif ($status == 'izin') {
-                    $attendanceCount['izin']++;
-                } elseif ($status == 'sakit') {
-                    $attendanceCount['sakit']++;
-                } elseif ($status == 'alpa') {
-                    $attendanceCount['alpa']++;
-                } elseif ($status == 'cuti') {
-                    $attendanceCount['cuti']++;
+        foreach ($attendances as $attendanceKey => $attendance) {
+            foreach ($datesInThisMonth as $dateInMonth) {
+                $attendanceDataByDate[$attendanceKey][$dateInMonth] = null;
+
+                foreach ($attendance as $attendanceValue) {
+                    if ($attendanceValue->presence_date->format('d') == $dateInMonth) {
+                        $attendanceDataByDate[$attendanceKey][$dateInMonth] = $attendanceValue->presence_status;
+
+                        $attendanceValue->presence_status = strtolower($attendanceValue->presence_status);
+
+                        if ($attendanceValue->presence_status == 'hadir') {
+                            $attendanceCount['hadir']++;
+                        } elseif ($attendanceValue->presence_status == 'izin') {
+                            $attendanceCount['izin']++;
+                        } elseif ($attendanceValue->presence_status == 'sakit') {
+                            $attendanceCount['sakit']++;
+                        } elseif ($attendanceValue->presence_status == 'alpa') {
+                            $attendanceCount['alpa']++;
+                        } elseif ($attendanceValue->presence_status == 'cuti') {
+                            $attendanceCount['cuti']++;
+                        }
+                    }
+                }
+            }
+
+            $attendanceCount['total'] = $attendanceCount['hadir'] + $attendanceCount['izin'] + $attendanceCount['sakit'] + $attendanceCount['alpa'] + $attendanceCount['cuti'];
+
+            foreach ($datesInThisMonth as $dateInMonth) {
+                $attendanceDataByDate[$attendanceKey][$dateInMonth] = null;
+
+                foreach ($attendance as $attendanceValue) {
+                    if ($attendanceValue->presence_date->format('d') == $dateInMonth) {
+                        $attendanceDataByDate[$attendanceKey][$dateInMonth] = $attendanceValue->presence_status;
+                    }
                 }
             }
         }
 
-        $attendanceCount['total'] = $attendanceCount['hadir'] + $attendanceCount['izin'] + $attendanceCount['sakit'] + $attendanceCount['alpa'] + $attendanceCount['cuti'];
+        $hasScheduleToday = Attendances::where('employee_id', Auth::user()->employee->id)
+                ->whereDate('presence_date', date('Y-m-d'))
+                ->first() ?? null;
 
-        // check schedule today
-        $hasScheduleToday = null;
-        if (Auth::user()->role != 'admin') {
-            $hasScheduleToday = Attendances::scheduleToday(Auth::user()->employee?->id)->get()->first();
-        }
-
-
-        return view('dashboard.index', compact('attendances', 'datesInThisMonth', 'attendanceDataByDate', 'employees', 'attendanceCount', 'datePicked', 'hasScheduleToday'));
+        return view('dashboard.index', compact('attendances', 'datesInThisMonth', 'attendanceDataByDate', 'attendanceCount', 'datePicked', 'hasScheduleToday'));
 
     }
 }
