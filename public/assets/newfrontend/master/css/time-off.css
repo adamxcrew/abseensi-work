@@ -1,0 +1,146 @@
+.btn-setting {
+   margin-top: 10px;
+
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 11px;
+   line-height: 16px;
+
+   color: #FFFFFF;
+
+   width: 130px;
+   height: 30px;
+
+   background: #0090E8;
+   border-radius: 5px;
+}
+
+.modal-title {
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 14px;
+   line-height: 21px;
+   color: #FFFFFF;
+   padding: 0.75%;
+
+   background-color: #0090E8;
+   border-radius: 10px;
+   height: 38px;
+}
+
+.modal-title2 {
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 14px;
+   line-height: 21px;
+   color: #FFFFFF;
+   padding: 0.75%;
+
+   padding-top: 8px;
+
+   background-color: #0090E8;
+   border-radius: 10px;
+   height: 38px;
+}
+
+.actionModal {
+   vertical-align: middle;
+}
+
+.btnModal {
+   /* width: 128px; */
+   height: 35px;
+
+
+   background-color: #0090E8;
+
+   border-radius: 5px;
+
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 12px;
+   line-height: 18px;
+}
+
+.btnKembaliModal {
+   /* width: 128px; */
+   height: 35px;
+
+
+   background-color: #b2def8;
+
+   border-color: #b2def8;
+   border-radius: 5px;
+
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 12px;
+   line-height: 18px;
+   color: #0090E8;
+}
+
+
+.modalInput .inputext {
+   border-radius: 5px;
+   border: 1px solid #E4E6EE;
+
+
+   width: 347px;
+   height: 37px;
+}
+
+.label-modal {
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 600;
+   font-size: 12px;
+   line-height: 18px;
+   /* identical to box height */
+
+
+   color: #404253;
+
+}
+
+.wajibIsi {
+   color: red;
+}
+
+.bread-crumb {
+   font-family: "Poppins";
+   font-style: normal;
+   font-weight: 400;
+   font-size: 12px;
+   line-height: 24px;
+}
+
+@media (min-width: 250px) and (max-width: 939px) {
+   .data-tanggal {
+      display: none;
+   }
+
+   .d-flex {
+      flex-direction: column;
+   }
+
+   .btn-setting {
+      margin-bottom: 10px;
+   }
+
+   /* .d-flex{
+      display: block;
+   } */
+
+   .garis {
+      display: none;
+   }
+
+   input[type="date"] {
+      width: 130px;
+   }
+}

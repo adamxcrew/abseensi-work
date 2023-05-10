@@ -1,0 +1,504 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "poppins" !important;
+}
+/* Kiri */
+
+@media (min-width: 700px) {
+  .wrap-left {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    background: #0090e8;
+  }
+}
+
+/* @media (max-width:700px) {
+    .wrap-left {
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        left: 0px;
+        top: 0px;
+        background: #0090E8;
+    }  
+} */
+
+@media (max-width: 700px) {
+  .wrap-left {
+    position: absolute;
+    width: 50%;
+    /* height: 100%; */
+    left: 0px;
+    top: 0px;
+    background: #0090e8;
+  }
+}
+
+.content-slide {
+  max-width: 400px;
+  position: relative;
+  margin-top: 20px;
+  margin: auto;
+}
+
+.imgslide {
+  display: none;
+}
+
+.imgslide img {
+  top: 100px;
+  vertical-align: middle;
+  margin: auto;
+  width: 100%;
+  /* height: 350px; */
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  color: rgb(255, 254, 224);
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: rgb(0, 0, 0);
+}
+
+.judul {
+  font-family: "poppins" !important;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 30px;
+  line-height: 54px;
+  /* identical to box height */
+
+  text-align: center;
+
+  color: #ffffff;
+}
+
+.text {
+  font-family: "poppins" !important;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+/* responsive */
+
+@media screen and (max-width: 631px) {
+  .content-slide {
+    padding: 4px 20px 6px 20px;
+  }
+
+  .next {
+    right: 50px;
+    border-radius: 3px 0 0 3px;
+  }
+}
+
+.efek {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.con .page {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.page .dot {
+  cursor: pointer;
+  height: 8px;
+  width: 8px;
+  margin: 0 2px;
+  background-color: #bbb;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+  border-radius: 50%;
+}
+
+.page .active,
+.page .dot:hover {
+  background-color: #ffffff;
+  width: 31px;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+
+/* Kanan */
+.wrap-right {
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 50%;
+  z-index: 1;
+  background-color: white;
+}
+.login-wrap {
+  margin-left: 13%;
+}
+
+.login-wrap ::placeholder {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 15px;
+  color: #b0b0b0;
+}
+
+@media (min-width: 700px) {
+  .logo img {
+    margin-top: 13%;
+    margin-left: 13%;
+  }
+  .login-wrap h3 {
+    margin-top: 5%;
+
+    font-family: "poppins" !important;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 32px;
+    /* identical to box height */
+
+    color: #aab2bb;
+  }
+  .login-wrap label {
+    position: relative;
+    height: 18px;
+
+    font-family: "poppins" !important;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    /* identical to box height */
+
+    color: #aab2bb;
+  }
+  .login-wrap input {
+    position: relative;
+    width: 91.6%;
+    height: 40px;
+
+    background: #f8f8f8;
+    border-radius: 5px;
+    border: #aab2bb;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 15px;
+    padding: 0 30px 0 5px;
+  }
+  .flex {
+    width: 90%;
+  }
+  .lupa {
+    height: 18px;
+
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    /* identical to box height */
+
+    color: #0090e8;
+  }
+  .ada {
+    width: 191px;
+    height: 18px;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    /* identical to box height */
+
+    color: #0090e8;
+  }
+  .btn-masuk {
+    width: 80%;
+    height: 40px;
+    margin-top: 2%;
+    padding-top: 8px;
+    background: #0090e8;
+    border: #0090e8;
+    border-radius: 5px;
+    position: absolute;
+
+    text-decoration: none;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height */
+
+    text-align: center;
+
+    color: #ffffff;
+  }
+
+  .btn-masuk:hover {
+    text-decoration: none;
+    color: #ffffff;
+  }
+}
+
+@media (max-width: 700px) {
+  .logo img {
+    margin-top: 20%;
+    margin-left: 20%;
+    width: 50%;
+  }
+  .login-wrap h3 {
+    margin-top: 8%;
+
+    font-family: "poppins" !important;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    /* identical to box height */
+
+    color: #aab2bb;
+  }
+  .login-wrap label {
+    position: relative;
+    height: 18px;
+
+    font-family: "poppins" !important;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    /* identical to box height */
+
+    color: #aab2bb;
+  }
+  .login-wrap input {
+    position: relative;
+    width: 91.6%;
+    height: 40px;
+
+    background: #f8f8f8;
+    border-radius: 5px;
+    border: #aab2bb;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 15px;
+    padding: 0 30px 0 5px;
+  }
+  .flex {
+    width: 90%;
+  }
+  .lupa {
+    height: 18px;
+
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    /* identical to box height */
+
+    color: #0090e8;
+  }
+  .btn-masuk {
+    width: 80%;
+    height: 40px;
+    margin-top: 2%;
+
+    background: #0090e8;
+    border: #0090e8;
+    border-radius: 5px;
+    position: absolute;
+
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height */
+
+    text-align: center;
+
+    color: #ffffff;
+  }
+}
+
+.field-icon {
+  float: right;
+  margin-right: 55px;
+  margin-top: -30px;
+  position: relative;
+  z-index: 2;
+}
+
+.backgroundIMG {
+  position: absolute;
+}
+.top {
+  position: absolute;
+}
+.bottom {
+  position: absolute;
+}
+
+@media (min-height: 690px) {
+  .con {
+    margin-top: 130px;
+  }
+
+  .set1 {
+    width: 100px;
+    height: 100px;
+  }
+
+  .set3 {
+    margin-left: 250px;
+    width: 70px;
+    height: 70px;
+  }
+  .set4 {
+    position: absolute;
+    bottom: 0;
+
+    width: 100px;
+    height: 100px;
+
+    margin-left: 110px;
+  }
+  .set5 {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100px;
+    height: 100px;
+  }
+
+  .backgroundIMG {
+    width: 350px;
+    height: 400px;
+  }
+
+  .imgLogin1 {
+    margin-left: -50px;
+    width: 500px;
+    height: 400px;
+  }
+  .imgLogin2 {
+    width: 300px;
+    height: 350px;
+  }
+  .imgLogin3 {
+    width: 300px;
+    height: 400px;
+  }
+}
+
+@media (max-height: 690px) {
+  .con {
+    margin-top: 40px;
+  }
+
+  .set1 {
+    width: 50px;
+    height: 50px;
+  }
+
+  .set3 {
+    margin-left: 150px;
+    width: 40px;
+    height: 40px;
+  }
+  .set4 {
+    position: absolute;
+    bottom: 0;
+
+    width: 40px;
+    height: 40px;
+
+    margin-left: 100px;
+  }
+  .set5 {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 40px;
+    height: 40px;
+  }
+
+  .backgroundIMG {
+    margin-left: 30px;
+    margin-top: 40px;
+    width: 300px;
+    height: 270px;
+  }
+
+  .imgLogin1 {
+    width: 390px;
+    height: 380px;
+  }
+  .imgLogin2 {
+    width: 300px;
+    height: 350px;
+  }
+}

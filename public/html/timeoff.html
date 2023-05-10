@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+   <meta charset="UTF-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <meta name="csrf-token" content="{{ csrf_token() }}" />
+   <title>uyi</title>
+
+   <!-- FAVICON -->
+   <link rel="shortcut icon" href="./public/assets/img/wikrama-logo.png">
+
+   <!-- BOOTSTRAP -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+   <!-- BOOSTRAP ICONS -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+   <link rel='stylesheet'
+      href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css'>
+   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.4/vue.js'></script>
+
+
+   <!-- Custom fonts for this template-->
+   <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+   <link href="./public/master/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+
+   <!-- Custom styles for this template-->
+   <link rel="stylesheet" href="./public/master/css/sb-admin-2.min.css">
+   <link rel="stylesheet" href="./public/master/css/master.css">
+   <link rel="stylesheet" href="./public/master/css/dashboard.css">
+   <link rel="stylesheet" href="./public/master/css/time-off.css">
+   <script src="./public/master/vendor/jquery/jquery.min.js"></script>
+
+   <!-- DataTables -->
+   <link rel="stylesheet" href="./public/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+   <link rel="stylesheet" href="./public/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+   <link rel="stylesheet" href="./public/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+   <link rel="stylesheet" href="./public/assets/css//snackbar.min.css">
+   <script src="./public/assets/js/snackbar.min.js"></script>
+
+
+</head>
+
+
+
+<body id="page-top">
+
+   <!-- Page Wrapper -->
+   <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="navbar-nav sidebar accordion bg-sidebar" id="accordionSidebar">
+
+         <!-- Sidebar - Brand -->
+         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
+            <div class="sidebar-brand-icon mt-4">
+               <img src="./public/assets/img/wikrama-logo.png" width="80" alt="logowikrama">
+            </div>
+            <div class="sidebar-brand-text mt-3"><img src="./public/assets/img/text-wikrama.png" width="135"
+                  alt="text-wikrama"></sup>
+            </div>
+         </a>
+
+
+         <!-- menus -->
+         <!-- Nav Item - Dashboard -->
+         <li class="nav-item cont-border mt-5 mb-3">
+            <a class="nav-link btnSide ">
+
+               <x-icon type="dashboard-icon" />
+
+               <span class="side-text">Dashboard</span>
+            </a>
+         </li>
+
+         <!-- Nav Item - Pages Collapse Menu -->
+         <li class="nav-item mb-3 cont-border">
+            <a class="nav-link btnSide collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+
+               <x-icon type="guru-icon" />
+
+               <span class="text-sidebar side-text2">Guru</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+               <div class="bg-dropdown-sidebar collapse-inner rounded" style="background-color: #15548f">
+                  <a class="active-dropdown" href="">Daftar Guru</a>
+                  <a class="active-dropdown my-2" href="">Kehadiran</a>
+                  <a class="active-dropdown" href="">Time Off</a>
+               </div>
+            </div>
+         </li>
+
+         <li class="nav-item cont-border">
+            <a class="nav-link btnSide" href="#">
+
+               <x-icon type="pengaturan-icon" />
+               <span class="side-text">Pengaturan</span>
+            </a>
+         </li>
+
+
+         <br>
+         <!-- Sidebar Toggler (Sidebar) -->
+         <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+         </div>
+
+      </ul>
+      <!-- End of Sidebar -->
+
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+
+         <!-- Main Content -->
+         <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand topbar mb-4 static-top navbg">
+
+               <!-- Sidebar Toggle (Topbar) -->
+               <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                  <i class="fa fa-bars"></i>
+               </button>
+
+               <!-- Topbar Search -->
+               <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                  <div class="input-group">
+                     <input type="text" class="form-control btnSearch border-0 small" placeholder="Search ..."
+                        aria-label="Search" aria-describedby="basic-addon2">
+                     <div class="input-group-append">
+                        <button class="btn btnSearch" type="button">
+                           <i class="fas fa-search fa-sm"></i>
+                        </button>
+                     </div>
+                  </div>
+               </form>
+
+               <!-- Topbar Navbar -->
+               <ul class="navbar-nav ml-auto">
+
+                  <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                  <li class="nav-item dropdown no-arrow d-sm-none">
+                     <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-search fa-fw"></i>
+                     </a>
+                     <!-- Dropdown - Messages -->
+                     <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                        aria-labelledby="searchDropdown">
+                        <form class="form-inline mr-auto w-100 navbar-search">
+                           <div class="input-group">
+                              <input type="text" class="form-control bg-light border-0 small"
+                                 placeholder="Cari nama pegawai ..." aria-label="Search"
+                                 aria-describedby="basic-addon2">
+                              <div class="input-group-append">
+                                 <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                 </button>
+                              </div>
+                           </div>
+                        </form>
+                     </div>
+                  </li>
+
+                  <!-- Nav Item - Alerts -->
+                  <li class="nav-item topbar-adj mx-5">
+                     <a href="kml">Tambah
+                        Guru</a>
+                  </li>
+
+                  <!-- Nav Item - Messages -->
+                  <li class="nav-item topbar-adj mx-3">
+                     <a href="https://smkwikrama.sch.id/" target="__blank" class="text-topbar">Info
+                        Sekolah</a>
+                  </li>
+
+                  <div class="topbar-divider d-none d-sm-block"></div>
+
+                  <!-- Nav Item - User Information -->
+                  <li class="nav-item dropdown no-arrow">
+                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-nav small">Admin</span>
+                        <img class="img-profile rounded-circle" src="./public/master/img/img_profile.jpg">
+                     </a>
+                     <!-- Dropdown - User Information -->
+                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                        aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="#">
+                           <img class="img-profile rounded-circle" src="./public/master/img/img_profile.jpg" alt="">
+                           Profile
+                        </a>
+                        <a class="dropdown-item" href="/profile">
+                           <i class="fas fa-users fa-sm fa-fw mr-2 text-gray-400"></i>
+                           Info Saya
+                        </a>
+                        <!-- <a class="dropdown-item" href="#">
+                                    <i class="fas fa-city fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Info Perusahaan
+                                </a> -->
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                           <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                           Keluar
+                        </a>
+                     </div>
+                  </li>
+
+               </ul>
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <!-- TEMPAT SECTION CONTENT -->
+            <div id="layoutSidenav_content">
+               <main>
+                  <div class="container-fluid px-4">
+                     <div class="row">
+
+
+                        <div class="col">
+                           <div class="d-flex">
+                              <!-- TRIGGER MODAL -->
+                              <div class="mr-auto">
+                                 <button class="btn btn-primary btn-setting" style="padding-bottom: 20px;"
+                                    data-toggle="modal" data-target="#modalToggle">
+                                    Time Off Setting
+                                 </button>
+                              </div>
+
+                              <!-- MODAL -->
+                              <div class="modal fade" id="modalToggle" aria-hidden="true"
+                                 aria-labelledby="modalToggleLabel" tabindex="-1">
+                                 <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                       <div class="modal-header">
+                                          <div class="col">
+                                             <h5 class="modal-title text-center" id="modalToggleLabel">Time Off Settings
+                                             </h5>
+                                          </div>
+                                          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                                       </div>
+                                       <div class="modal-body">
+
+                                          <table class="table table-hover">
+                                             <thead>
+                                                <tr>
+                                                   <th scope="col">No</th>
+                                                   <th scope="col">Time Off</th>
+                                                   <th scope="col">Jenis Time Off</th>
+                                                   <th scope="col">Kode</th>
+                                                   <th scope="col">Durasi</th>
+                                                   <th scope="col">Action</th>
+                                                </tr>
+                                             </thead>
+                                             <tbody>
+
+
+                                                <tr>
+                                                   <td>1</td>
+                                                   <td>Cuti</td>
+                                                   <td>Cuti Tahunan</td>
+                                                   <td>CT</td>
+                                                   <td>12 Hari</td>
+                                                   <td class="actionModal">
+                                                      <a href="#" class="ml-2">
+                                                         <i class="fas fa-edit"></i>
+                                                      </a>
+                                                      <a href="#"><i class="fas fa-trash"></i></a>
+                                                   </td>
+                                                </tr>
+
+                                                <tr>
+                                                   <td>2</td>
+                                                   <td>Cuti</td>
+                                                   <td>Cuti Melahirkan</td>
+                                                   <td>CM</td>
+                                                   <td>90 Hari</td>
+                                                   <td class="actionModal">
+                                                      <a href="#" class="ml-2">
+                                                         <i class="fas fa-edit"></i>
+                                                      </a>
+                                                      <a href="#"><i class="fas fa-trash"></i></a>
+                                                   </td>
+                                                </tr>
+
+                                                <tr>
+                                                   <td>3</td>
+                                                   <td>Cuti</td>
+                                                   <td>Cuti Kerabat Meninggal</td>
+                                                   <td>CKM</td>
+                                                   <td>3 Hari</td>
+                                                   <td class="actionModal">
+                                                      <a href="#" class="ml-2">
+                                                         <i class="fas fa-edit"></i>
+                                                      </a>
+                                                      <a href="#"><i class="fas fa-trash"></i></a>
+                                                   </td>
+                                                </tr>
+
+                                                <tr>
+                                                   <td>4</td>
+                                                   <td>Dinas Luar</td>
+                                                   <td>Dinas Luar</td>
+                                                   <td>DL</td>
+                                                   <td>0 Hari</td>
+                                                   <td class="actionModal">
+                                                      <a href="#" class="ml-2">
+                                                         <i class="fas fa-edit"></i>
+                                                      </a>
+                                                      <a href="#"><i class="fas fa-trash"></i></a>
+                                                   </td>
+                                                </tr>
+
+                                                <tr>
+                                                   <td>5</td>
+                                                   <td>Sakit</td>
+                                                   <td>Sakit</td>
+                                                   <td>S</td>
+                                                   <td>0 Hari</td>
+                                                   <td class="actionModal">
+                                                      <a href="/#" class="ml-2">
+                                                         <i class="fas fa-edit"></i>
+                                                      </a>
+                                                      <a href="/#"><i class="fas fa-trash"></i></a>
+                                                   </td>
+                                                </tr>
+
+
+                                             </tbody>
+                                          </table>
+
+
+
+                                       </div>
+                                       <div class="modal-footer">
+                                          <button type="button" class="btn btn-primary btnKembaliModal"
+                                             data-dismiss="modal">Kembali</button>
+
+                                          <button class="btn btn-primary btnModal" data-target="#modalToggle2"
+                                             data-toggle="modal" data-dismiss="modal">Tambah Time off</button>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="modal fade" id="modalToggle2" aria-hidden="true"
+                                 aria-labelledby="modalToggleLabel2" tabindex="-1">
+                                 <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content">
+                                       <div class="modal-header">
+                                          <div class="col">
+                                             <h5 class="modal-title2 text-center" id="modalToggleLabel2">Tambah Time off
+                                             </h5>
+
+                                          </div>
+                                          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                                       </div>
+                                       <div class="modal-body">
+
+                                          <div class="row" style="margin-left: 10px; ">
+                                             <div class="col-sm-2 col-md-4 col-xl-6">
+                                                <div class="form-group modalInput">
+                                                   <label for="timeOff" class="label-modal" id="timeOff-lbl">Time Off
+                                                      <small class="wajibIsi">*</small></label>
+                                                   <input type="text" name="timeOff" id="timeOff" class="inputext">
+
+                                                   <br><br>
+
+                                                   <label for="kodeTimeOff" class="label-modal"
+                                                      id="kodeTimeOff-lbl">Kode <small
+                                                         class="wajibIsi">*</small></label>
+                                                   <input type="text" name="kodeTimeOff" id="kodeTimeOff"
+                                                      class="inputext">
+                                                </div>
+                                             </div>
+
+                                             <div class="col-sm-2 col-md-4 col-xl-6">
+                                                <div class="form-group modalInput">
+                                                   <label for="jenisTimeOff" class="label-modal"
+                                                      id="jenisTimeOff-lbl">Jenis Time
+                                                      Off <small class="wajibIsi">*</small></label>
+                                                   <input type="text" name="jenisTimeOff" id="jenisTimeOff"
+                                                      class="inputext">
+
+                                                   <br><br>
+
+                                                   <label for="durasiTimeOff" class="label-modal"
+                                                      id="durasiTimeOff-lbl">Durasi
+                                                      (Hari)<small class="wajibIsi">*</small></label>
+                                                   <input type="text" name="durasiTimeOff" id="durasiTimeOff"
+                                                      class="inputext">
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="modal-footer">
+                                          <button class="btn btn-primary btnKembaliModal" data-target="#modalToggle"
+                                             data-toggle="modal" data-dismiss="modal">Kembali</button>
+
+                                          <button class="btn btn-primary btnModal" data-target="#modalToggle2"
+                                             data-toggle="modal" data-dismiss="modal">Tambah</button>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- END MODAL -->
+
+                              <div class="ml-auto">
+                                 <small class="data-tanggal">Data Tanggal : </small>
+
+                                 <label for="" style="padding-top: 5px;">
+                                    <input type="date" value="<?php echo date('Y-m-d'); ?>">
+                                 </label>
+                                 <small style="color: #AAB2BB;">-</small>
+                                 <label for="" style="padding-right: 10px; padding-top: 5px;">
+                                    <input type="date" value="<?php echo date('Y-m-d'); ?>">
+                                 </label>
+                                 <button class="btn btn-primary btnExp eksportdata">Eksport Data</button>
+                              </div>
+                           </div>
+
+                           <div class="card mb-4">
+                              <div class="card-header">
+                                 <i class="fas fa-table me-1"></i>
+                                 Daftar Time Off
+                              </div>
+
+                              <div class="card-body">
+                                 <div class="table-responsive ">
+                                    <table class="table table-hover" id="datatablesSimple">
+                                       <thead>
+                                          <tr>
+                                             <th style="width: 10px;"></th>
+                                             <th>Nama Pegawai</th>
+                                             <th>Tanggal Pengajuan</th>
+                                             <th>Waktu Pengajuan</th>
+                                             <th>Status</th>
+                                             <th>Jenis Time Off</th>
+                                             <th>Proses</th>
+                                             <th></th>
+                                          </tr>
+                                       </thead>
+
+                                       <tbody>
+                                          <tr>
+                                             <td><img src="./public/master/img/buletan-abu.png" class="rounded-circle">
+                                             </td>
+                                             <td>
+                                                <div class="col">Eko Kurniawan Khannedy</div>
+                                                <div class="col"><small>12007787</small></div>
+                                             </td>
+                                             <td class="dateLocalDay">
+                                                08.00
+                                             </td>
+                                             <td>07:00</td>
+                                             <td>
+                                                <span class="badge bg-danger">Ditolak</span>
+                                             </td>
+                                             <td>Dinas Luar</td>
+                                             <!-- <td><?= date('h:i') ?></td> -->
+                                             <td>Middle Management</td>
+                                             <td><a href="{{ route('timeoff.show', ['timeoff']) }}"><svg width="9"
+                                                      height="15" viewBox="0 0 9 15" fill="none"
+                                                      xmlns="http://www.w3.org/2000/svg">
+                                                      <path
+                                                         d="M0.392867 0.394637C0.26833 0.518919 0.169527 0.666543 0.102113 0.829057C0.0347 0.991571 0 1.16579 0 1.34173C0 1.51767 0.0347 1.69188 0.102113 1.8544C0.169527 2.01691 0.26833 2.16454 0.392867 2.28882L5.60522 7.50117L0.392867 12.7135C0.141683 12.9647 0.000568833 13.3054 0.000568833 13.6606C0.000568833 14.0158 0.141683 14.3565 0.392867 14.6077C0.644051 14.8589 0.984729 15 1.33996 15C1.69518 15 2.03586 14.8589 2.28705 14.6077L8.45321 8.44154C8.57774 8.31726 8.67655 8.16964 8.74396 8.00712C8.81137 7.84461 8.84607 7.67039 8.84607 7.49445C8.84607 7.31851 8.81137 7.1443 8.74396 6.98178C8.67655 6.81927 8.57774 6.67165 8.45321 6.54736L2.28705 0.381203C1.77656 -0.129285 0.916789 -0.129285 0.392867 0.394637Z"
+                                                         fill="#AAB2BB" />
+                                                   </svg>
+                                                </a></td>
+                                          </tr>
+
+                                          <tr>
+                                             <td><img src="./public/master/img/buletan-abu.png" class="rounded-circle">
+                                             </td>
+                                             <td>
+                                                <div class="col">Kusnadi</div>
+                                                <div class="col"><small>12007788</small></div>
+                                             </td>
+                                             <td>Senin 12 Mei 2022</td>
+                                             <td>08:00</td>
+                                             <td>
+                                                <span class="badge bg-kuning">Menunggu</span>
+                                             </td>
+                                             <td>Cuti</td>
+                                             <td>Middle Management</td>
+                                             <td><a href="/detail-kehadiran"><svg width="9" height="15"
+                                                      viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                      <path
+                                                         d="M0.392867 0.394637C0.26833 0.518919 0.169527 0.666543 0.102113 0.829057C0.0347 0.991571 0 1.16579 0 1.34173C0 1.51767 0.0347 1.69188 0.102113 1.8544C0.169527 2.01691 0.26833 2.16454 0.392867 2.28882L5.60522 7.50117L0.392867 12.7135C0.141683 12.9647 0.000568833 13.3054 0.000568833 13.6606C0.000568833 14.0158 0.141683 14.3565 0.392867 14.6077C0.644051 14.8589 0.984729 15 1.33996 15C1.69518 15 2.03586 14.8589 2.28705 14.6077L8.45321 8.44154C8.57774 8.31726 8.67655 8.16964 8.74396 8.00712C8.81137 7.84461 8.84607 7.67039 8.84607 7.49445C8.84607 7.31851 8.81137 7.1443 8.74396 6.98178C8.67655 6.81927 8.57774 6.67165 8.45321 6.54736L2.28705 0.381203C1.77656 -0.129285 0.916789 -0.129285 0.392867 0.394637Z"
+                                                         fill="#AAB2BB" />
+                                                   </svg>
+                                                </a></td>
+                                          </tr>
+
+                                          <tr>
+                                             <td><img src="./public/master/img/buletan-abu.png" class="rounded-circle">
+                                             </td>
+                                             </td>
+                                             <td>
+                                                <div class="col">Kevin</div>
+                                                <div class="col"><small>12007789</small></div>
+                                             </td>
+                                             <td>Jumat 4 Juli 2022</td>
+                                             <td>07:30</td>
+                                             <td>
+                                                <span class="badge bg-hijau">Disetujui</span>
+                                             </td>
+                                             <td>Cuti</td>
+                                             <td>-</td>
+                                             <td><a href="/detail-kehadiran"><svg width="9" height="15"
+                                                      viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                      <path
+                                                         d="M0.392867 0.394637C0.26833 0.518919 0.169527 0.666543 0.102113 0.829057C0.0347 0.991571 0 1.16579 0 1.34173C0 1.51767 0.0347 1.69188 0.102113 1.8544C0.169527 2.01691 0.26833 2.16454 0.392867 2.28882L5.60522 7.50117L0.392867 12.7135C0.141683 12.9647 0.000568833 13.3054 0.000568833 13.6606C0.000568833 14.0158 0.141683 14.3565 0.392867 14.6077C0.644051 14.8589 0.984729 15 1.33996 15C1.69518 15 2.03586 14.8589 2.28705 14.6077L8.45321 8.44154C8.57774 8.31726 8.67655 8.16964 8.74396 8.00712C8.81137 7.84461 8.84607 7.67039 8.84607 7.49445C8.84607 7.31851 8.81137 7.1443 8.74396 6.98178C8.67655 6.81927 8.57774 6.67165 8.45321 6.54736L2.28705 0.381203C1.77656 -0.129285 0.916789 -0.129285 0.392867 0.394637Z"
+                                                         fill="#AAB2BB" />
+                                                   </svg>
+                                                </a></td>
+                                          </tr>
+
+                                       </tbody>
+                                    </table>
+                                 </div>
+                              </div>
+                           </div>
+
+                        </div>
+                     </div>
+                  </div>
+               </main>
+            </div>
+            <!-- TUTUP CONTENT -->
+         </div>
+      </div>
+
+   </div>
+   <!-- /.container-fluid -->
+
+   </div>
+   <!-- End of Main Content -->
+
+   </div>
+   <!-- End of Content Wrapper -->
+
+   </div>
+   <!-- End of Page Wrapper -->
+
+   <!-- Scroll to Top Button-->
+   <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+   </a>
+
+   <!-- Logout Modal-->
+   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="" id="exampleModalLabel">Yakin untuk keluar?</h5>
+               <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">x</span>
+               </button>
+            </div>
+            <div class="modal-body">Pilih "Keluar" di bawah jika Anda siap untuk mengakhiri sesi Anda saat ini.
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-secondary" type="button" data-dismiss="modal">Kembali</button>
+               <form action="{{ route('logout" class="d-none" id="form-logout" method="post">
+                  @csrf
+               </form>
+               <a class="btn btn-primary" href="{{ route('logout" id="btn-logout">Keluar</a>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- Bootstrap core JavaScript-->
+   <script src="./public/master/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+   <!-- Core plugin JavaScript-->
+   <script src="./public/master/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+   <!-- Custom scripts for all pages-->
+   <script src="./public/master/js/sb-admin-2.min.js"></script>
+
+   <!-- Page level plugins -->
+   <script src="./public/master/vendor/chart.js/Chart.min.js"></script>
+
+   <!-- Page level custom scripts -->
+   <script src="./public/master/js/demo/chart-area-demo.js"></script>
+   <script src="./public/master/js/demo/chart-pie-demo.js"></script>
+
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+   <!-- DataTables -->
+   <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+   <!-- DataTables  & Plugins -->
+   <script src="./public/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+   <script src="./public/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+   <script src="./public/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+   <script src="./public/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+   <script src="./public/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+   <script src="./public/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+   <script src="./public/assets/plugins/jszip/jszip.min.js"></script>
+   <script src="./public/assets/plugins/pdfmake/pdfmake.min.js"></script>
+   <script src="./public/assets/plugins/pdfmake/vfs_fonts.js"></script>
+   <script src="./public/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+   <script src="./public/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+   <script src="./public/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+   <meta charset="UTF-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <meta name="csrf-token" content="{{ csrf_token() }}" />
+   <title>uyi</title>
+
+   <!-- FAVICON -->
+   <link rel="shortcut icon" href="./public/assets/img/wikrama-logo.png">
+
+   <!-- BOOTSTRAP -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+   <!-- BOOSTRAP ICONS -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+   <link rel='stylesheet'
+      href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css'>
+   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.4/vue.js'></script>
+
+
+   <!-- Custom fonts for this template-->
+   <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+   <link href="./public/master/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+
+   <!-- Custom styles for this template-->
+   <link rel="stylesheet" href="./public/master/css/sb-admin-2.min.css">
+   <link rel="stylesheet" href="./public/master/css/master.css">
+   <link rel="stylesheet" href="./public/master/css/dashboard.css">
+   <link rel="stylesheet" href="./public/master/css/tambahPegawai.css">
+   <script src="./public/master/vendor/jquery/jquery.min.js"></script>
+
+   <!-- DataTables -->
+   <link rel="stylesheet" href="./public/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+   <link rel="stylesheet" href="./public/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+   <link rel="stylesheet" href="./public/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+   <link rel="stylesheet" href="./public/assets/css//snackbar.min.css">
+   <script src="./public/assets/js/snackbar.min.js"></script>
+
+
+</head>
+
+
+
+<body id="page-top">
+
+   <!-- Page Wrapper -->
+   <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="navbar-nav sidebar accordion bg-sidebar" id="accordionSidebar">
+
+         <!-- Sidebar - Brand -->
+         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
+            <div class="sidebar-brand-icon mt-4">
+               <img src="./public/assets/img/wikrama-logo.png" width="80" alt="logowikrama">
+            </div>
+            <div class="sidebar-brand-text mt-3"><img src="./public/assets/img/text-wikrama.png" width="135"
+                  alt="text-wikrama"></sup>
+            </div>
+         </a>
+
+
+         <!-- menus -->
+         <!-- Nav Item - Dashboard -->
+         <li class="nav-item cont-border mt-5 mb-3">
+            <a class="nav-link btnSide ">
+
+               <x-icon type="dashboard-icon" />
+
+               <span class="side-text">Dashboard</span>
+            </a>
+         </li>
+
+         <!-- Nav Item - Pages Collapse Menu -->
+         <li class="nav-item mb-3 cont-border">
+            <a class="nav-link btnSide collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+
+               <x-icon type="guru-icon" />
+
+               <span class="text-sidebar side-text2">Guru</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+               <div class="bg-dropdown-sidebar collapse-inner rounded" style="background-color: #15548f">
+                  <a class="active-dropdown" href="">Daftar Guru</a>
+                  <a class="active-dropdown my-2" href="">Kehadiran</a>
+                  <a class="active-dropdown" href="">Time Off</a>
+               </div>
+            </div>
+         </li>
+
+         <li class="nav-item cont-border">
+            <a class="nav-link btnSide" href="#">
+
+               <x-icon type="pengaturan-icon" />
+               <span class="side-text">Pengaturan</span>
+            </a>
+         </li>
+
+
+         <br>
+         <!-- Sidebar Toggler (Sidebar) -->
+         <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+         </div>
+
+      </ul>
+      <!-- End of Sidebar -->
+
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+
+         <!-- Main Content -->
+         <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand topbar mb-4 static-top navbg">
+
+               <!-- Sidebar Toggle (Topbar) -->
+               <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                  <i class="fa fa-bars"></i>
+               </button>
+
+               <!-- Topbar Search -->
+               <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                  <div class="input-group">
+                     <input type="text" class="form-control btnSearch border-0 small" placeholder="Search ..."
+                        aria-label="Search" aria-describedby="basic-addon2">
+                     <div class="input-group-append">
+                        <button class="btn btnSearch" type="button">
+                           <i class="fas fa-search fa-sm"></i>
+                        </button>
+                     </div>
+                  </div>
+               </form>
+
+               <!-- Topbar Navbar -->
+               <ul class="navbar-nav ml-auto">
+
+                  <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                  <li class="nav-item dropdown no-arrow d-sm-none">
+                     <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-search fa-fw"></i>
+                     </a>
+                     <!-- Dropdown - Messages -->
+                     <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                        aria-labelledby="searchDropdown">
+                        <form class="form-inline mr-auto w-100 navbar-search">
+                           <div class="input-group">
+                              <input type="text" class="form-control bg-light border-0 small"
+                                 placeholder="Cari nama pegawai ..." aria-label="Search"
+                                 aria-describedby="basic-addon2">
+                              <div class="input-group-append">
+                                 <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                 </button>
+                              </div>
+                           </div>
+                        </form>
+                     </div>
+                  </li>
+
+                  <!-- Nav Item - Alerts -->
+                  <li class="nav-item topbar-adj mx-5">
+                     <a href="kml">Tambah
+                        Guru</a>
+                  </li>
+
+                  <!-- Nav Item - Messages -->
+                  <li class="nav-item topbar-adj mx-3">
+                     <a href="https://smkwikrama.sch.id/" target="__blank" class="text-topbar">Info
+                        Sekolah</a>
+                  </li>
+
+                  <div class="topbar-divider d-none d-sm-block"></div>
+
+                  <!-- Nav Item - User Information -->
+                  <li class="nav-item dropdown no-arrow">
+                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-nav small">Admin</span>
+                        <img class="img-profile rounded-circle" src="./public/master/img/img_profile.jpg">
+                     </a>
+                     <!-- Dropdown - User Information -->
+                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                        aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="#">
+                           <img class="img-profile rounded-circle" src="./public/master/img/img_profile.jpg" alt="">
+                           Profile
+                        </a>
+                        <a class="dropdown-item" href="/profile">
+                           <i class="fas fa-users fa-sm fa-fw mr-2 text-gray-400"></i>
+                           Info Saya
+                        </a>
+                        <!-- <a class="dropdown-item" href="#">
+                                    <i class="fas fa-city fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Info Perusahaan
+                                </a> -->
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                           <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                           Keluar
+                        </a>
+                     </div>
+                  </li>
+
+               </ul>
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <!-- TEMPAT SECTION CONTENT -->
+            <form method="POST" action="">
+               <div class="container">
+                  <div id="app">
+                     <step-navigation :steps="steps" :currentstep="currentstep">
+                     </step-navigation>
+
+                     <div v-show="currentstep == 1">
+                        <div class="card">
+                           <div class="container-fluid mt-3">
+                              <div class="row">
+                                 <div class="col-md-4">
+                                    <!-- CARD -->
+                                    <div class="card bg-cardGradient mt-4">
+                                       <div class="row">
+                                          <div class="col-md-12">
+                                             <div class="d-flex justify-content-center">
+                                                <x-icon type="icon-datadiri" />
+
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <!-- CARD BODY -->
+                                       <div class="card-body">
+                                          <h5 class="card-title addTitle-card">Data Diri</h5>
+                                          <h5 class="card-text addBody-card">Silakan lengkapi data pribadi Anda dengan
+                                             baik baik dan sesuai dengan data yang ada</h5>
+                                       </div>
+                                    </div>
+                                    <div class="page text-center">
+                                       <span class="dotActive"></span>
+                                       <span class="dot1"></span>
+                                       <span class="dot1"></span>
+                                    </div>
+
+                                 </div>
+                                 <div class="col-md-8">
+                                    <div class="row">
+                                       <div class="col-md-6 mt-3">
+                                          <label class="nama labelAdd" id="nama-lbl" for="nama">Nama</label><br>
+                                          <input type="text" class="input-tambah form-control nama" name="nama"
+                                             id="nama" placeholder="Nama Lengkap">
+                                       </div>
+                                       <div class="col-md-6 mt-3">
+                                          <label class="nik labelAdd" id="nik-lbl" for="nik">NIK</label><br>
+                                          <input type="text" class="input-tambah form-control" name="nik" id="nik"
+                                             placeholder="Masukan NIK pegawai" style="width: 100%;">
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-6 mt-3">
+                                          <label class="tempatlahir labelAdd" id="tempatlahir-lbl" for="nama">Tempat
+                                             Lahir</label><br>
+                                          <input type="text" class="input-tambah form-control" name="tempatlahir"
+                                             id="tempatlahir" placeholder="Masukan tempat lahir ">
+
+                                       </div>
+                                       <div class="col-md-6 mt-3">
+                                          <label class="tgllahir labelAdd" id="tgllahir-lbl" for="tgllahir">Tanggal
+                                             Lahir</label><br>
+                                          <input type="date" class="input-tambah form-control" name="tgllahir"
+                                             id="tgllahir" placeholder="">
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-6 mt-3">
+                                          <label class="alamat labelAdd" id="alamat-lbl" for="alamat">Alamat
+                                             :</label><br>
+                                          <input type="text" class="input-tambah form-control" name="alamat" id="alamat"
+                                             placeholder="Masukan alamat pegawai">
+                                       </div>
+                                       <div class="col-md-6 mt-3">
+                                          <label class="jenisKelamin labelAdd" id="jenisKelamin-lbl"
+                                             for="jenisKelamin">Jenis
+                                             Kelamin :</label><br>
+                                          <select name="jenisKelamin" id="jenisKelamin-lbl"
+                                             class="inputPegawai form-control" aria-placeholder="Pilih Jenis Kelamin">
+                                             <option class="optKelamin"> Pilih jenis kelamin pegawai</option>
+                                             <option value="lakilaki" class="optKelamin"> Laki-laki</option>
+                                             <option value="perempuan" class="optKelamin"> Perempuan</option>
+                                          </select>
+
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-6 mt-3">
+                                          <label class="agama labelAdd" id="agama-lbl" for="agama">Agama
+                                             :</label><br>
+                                          <select name="agama" id="agama-lbl" class="inputPegawai form-control"
+                                             aria-placeholder="Pilih agama pegawai">
+                                             <option class="optAgama"> Pilih agama</option>
+                                             <option value="islam" class="optAgama"> Islam</option>
+                                             <option value="kristen" class="optAgama"> Kristen</option>
+                                             <option value="katolik" class="optAgama"> Katolik</option>
+                                             <option value="hindu" class="optAgama"> Hindu</option>
+                                             <option value="buddha" class="optAgama"> Buddha</option>
+                                             <option value="konghucu" class="optAgama"> Konghucu</option>
+                                          </select>
+                                       </div>
+                                       <div class="col-md-6 mt-3">
+                                          <label class="statusPerkawinan labelAdd" id="statusPerkawinan-lbl"
+                                             for="statusPerkawinan">Status Perkawinan :</label><br>
+                                          <select name="statusPerkawinan" id="statusPerkawinan-lbl"
+                                             class="inputPegawai form-control" aria-placeholder="Pilih status">
+                                             <option class="optKelamin">Pilih status</option>
+                                             <option value="menikah" class="optKelamin">Kawin</option>
+                                             <option value="belum-menikah" class="optKelamin">Belum Kawin</option>
+                                             <option value="cerai-hidup" class="optKelamin">Cerai Hidup</option>
+                                             <option value="cerai-mati" class="optKelamin">Cerai Mati</option>
+                                          </select>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-6 mt-3">
+                                          <label class="email labelAdd" id="email-lbl" for="email">Email</label><br>
+                                          <input type="email" class="input-tambah form-control" name="email" id="email"
+                                             placeholder="Masukan email pegawai">
+                                       </div>
+                                       <div class="col-md-6 mt-3">
+                                          <label class="noTelp labelAdd" id="noTelp-lbl" for="noTelp">Nomor
+                                             Telepon</label><br>
+                                          <input type="text" class="input-tambah form-control" name="noTelp" id="noTelp"
+                                             placeholder="Masukan nomor telepon pegawai">
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <!-- button -->
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+
+                     <div v-show="currentstep == 2">
+                        <div class="card">
+                           <div class="container-fluid mt-3">
+                              <div class="row">
+                                 <div class="col-md-4">
+                                    <!-- CARD -->
+                                    <div class="card bg-cardGradient mt-4">
+                                       <div class="row">
+                                          <div class="col-md-12">
+                                             <div class="d-flex justify-content-center">
+                                                <x-icon type="icon-datadiri" />
+
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <!-- CARD BODY -->
+                                       <div class="card-body">
+                                          <h5 class="card-title addTitle-card">Data Kepegawaian</h5>
+                                          <h5 class="card-text addBody-card">Data yang akan dilengkapi oleh Admin, akan
+                                             disesuaikan oleh data pegawai masing-masing</h5>
+                                       </div>
+                                    </div>
+                                    <div class="page text-center">
+                                       <span class="dot1"></span>
+                                       <span class="dotActive"></span>
+                                       <span class="dot1"></span>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-8">
+                                    <div class="row">
+                                       <div class="col-md-12 mt-3">
+                                          <label class="namalembaga labelAdd" id="namalembaga-lbl"
+                                             for="namalembaga">Nama Lembaga /
+                                             Perusahaan</label><br>
+                                          <input type="text" class="input-tambah form-control" name="namalembaga"
+                                             id="namalembaga" placeholder="SMK Wikrama Bogor" required disabled>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-6 mt-3">
+                                          <label class="idPegawai labelAdd" id="idPegawai-lbl" for="idPegawai">ID
+                                             Pegawai
+                                             :</label><br>
+                                          <input type="text" class="input-tambah form-control" name="idPegawai"
+                                             id="idPegawai" placeholder="ID PEGAWAI DI GENERATE OTOMATIS" required
+                                             disabled>
+
+                                       </div>
+                                       <div class=" col-md-6 mt-3">
+                                          <label class="posisi labelAdd" id="posisi-lbl" for="posisi">Posisi
+                                             Pegawai</label><br>
+                                          <input type="text" class="input-tambah form-control" name="posisi" id="posisi"
+                                             placeholder="Masukan posisi pegawai" required>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-6 mt-3">
+                                          <label class="status labelAdd" id="status-lbl" for="status">Status
+                                             Pegawai
+                                             :</label><br>
+                                          <input type="text" class="input-tambah form-control" name="status" id="status"
+                                             placeholder="Masukan status pegawai" required>
+                                       </div>
+                                       <div class="col-md-6 mt-3">
+                                          <label class="lamaBekerja labelAdd" id="lamaBekerja-lbl"
+                                             for="lamaBekerja">Lama
+                                             Bekerja :</label><br>
+                                          <input type="text" class="input-tambah form-control" name="lamaBekerja"
+                                             id="lamaBekerja" placeholder="1 Tahun" required disabled>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-6 mt-3">
+                                          <label class="tglGabung labelAdd" id="tglGabung-lbl" for="tglGabung">Tanggal
+                                             Bergabung :</label><br>
+                                          <input type="date" class="input-tambah form-control" name="tglGabung"
+                                             id="tglGabung" required>
+                                       </div>
+                                       <div class="col-md-6 mt-3">
+                                          <label class="tglBerhenti labelAdd" id="tglBerhenti-lbl"
+                                             for="tglBerhenti">Tanggal
+                                             Berhenti :</label><br>
+                                          <input type="date" class="input-tambah form-control" name="tglBerhenti"
+                                             id="tglBerhenti" required>
+                                       </div>
+                                    </div>
+
+
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+
+                     <div v-show="currentstep == 3">
+                        <div class="card">
+                           <div class="container-fluid mt-3">
+                              <div class="row">
+                                 <div class="col-md-4">
+                                    <!-- CARD -->
+                                    <div class="card bg-cardGradient mt-4">
+                                       <div class="row">
+                                          <div class="col-md-12">
+                                             <div class="d-flex justify-content-center">
+                                                <x-icon type="icon-datadiri" />
+
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <!-- CARD BODY -->
+                                       <div class="card-body">
+                                          <h5 class="card-title addTitle-card">Review Data</h5>
+                                          <h5 class="card-text addBody-card">Review data sebelum di submit</h5>
+                                       </div>
+                                    </div>
+                                    <div class="page text-center">
+                                       <span class="dot1"></span>
+                                       <span class="dot1"></span>
+                                       <span class="dotActive"></span>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-8">
+                                    <h1 class="hero-text"># Data Diri</h1>
+                                    <div class="row">
+                                       <div class="col-md-6 mt-3">
+                                          <label class="namaDepan label-detail" id="namaDepan-lbl"
+                                             for="namaDepan">Nama</label><br>
+                                          <p class="value-detail" id="namaDepan">Eko</p>
+                                          <hr>
+                                       </div>
+                                       <div class="col-md-6 mt-3">
+                                          <label class="nik label-detail" id="nik-lbl" for="nik">NIK</label><br>
+                                          <p class="value-detail" id="nik">3671081111111</p>
+                                          <hr>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-6 mt-3">
+                                          <label class="tempat-lahir label-detail" id="tempat-lahir-lbl"
+                                             for="tempat-lahir">Tempat
+                                             Lahir</label><br>
+                                          <p class="value-detail">Tangerang</p>
+                                          <hr>
+                                       </div>
+                                       <div class=" col-md-6 mt-3">
+                                          <label class="tgl-lahir label-detail" id="tgl-lahir-lbl"
+                                             for="tgl-lahir">Tanggal
+                                             Lahir</label><br>
+                                          <p class="value-detail">11 November 2004</p>
+                                          <hr>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-6 mt-3">
+                                          <label class="alamat label-detail" id="alamat-lbl"
+                                             for="alamat">Alamat</label><br>
+                                          <p class="value-detail">Jln Veteran III</p>
+                                          <hr>
+                                       </div>
+                                       <div class="col-md-6 mt-3">
+                                          <label class="jk label-detail" id="jk-lbl" for="jk">Jenis
+                                             Kelamin</label><br>
+                                          <p class="value-detail">Pria</p>
+                                          <hr>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-6 mt-3">
+                                          <label class="agama label-detail" id="agama-lbl" for="agama">Agama
+                                             :</label><br>
+                                          <p class="value-detail">Islam</p>
+                                          <hr>
+                                       </div>
+                                       <div class="col-md-6 mt-3">
+                                          <label class="status-perkawinan label-detail" id="status-perkawinan-lbl"
+                                             for="status-perkawinan">Status Perkawinan</label><br>
+                                          <p class="value-detail">Belum Nikah</p>
+                                          <hr>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-6 mt-3">
+                                          <label class="email label-detail" id="email-lbl" for="email">Email</label><br>
+                                          <p class="value-detail">webowomaterials@gmail.com</p>
+                                          <hr>
+                                       </div>
+                                       <div class="col-md-6 mt-3">
+                                          <label class="no-telp labelAdd" id="no-telp-lbl" for="no-telp">Nomor
+                                             Telepon</label><br>
+                                          <p class="value-detail">0812345678</p>
+                                          <hr>
+                                       </div>
+                                    </div>
+
+                                    <h1 class="hero-text"># Data Kepegawaian</h1>
+                                    <div class="row">
+                                       <div class="col-md-12 mt-3">
+                                          <label class="lembaga labelAdd" id="lembaga-lbl" for="lembaga">Nama
+                                             Lembaga / Perusahaan</label><br>
+                                          <p class="value-detail">SMK Wikrama Bogor</p>
+                                          <hr>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-6 mt-3">
+                                          <label class="id-pegawai label-detail" id="id-pegawai-lbl" for="id-pegawai">ID
+                                             Pegawai</label><br>
+                                          <p class="value-detail">10</p>
+                                          <hr>
+                                       </div>
+                                       <div class="col-md-6 mt-3">
+                                          <label class="posisi labelAdd" id="posisi-lbl" for="posisi">Posisi
+                                             Pegawai</label><br>
+                                          <p class="value-detail">Fullstack Developer</p>
+                                          <hr>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-6 mt-3">
+                                          <label class="status label-detail" id="status-lbl"
+                                             for="status">Status</label><br>
+                                          <p class="value-detail">Permanen</p>
+                                          <hr>
+                                       </div>
+                                       <div class="col-md-6 mt-3">
+                                          <label class="lama-bekerja labelAdd" id="lama-bekerja-lbl"
+                                             for="lama-bekerja">Lama
+                                             Bekerja</label><br>
+                                          <p class="value-detail">1 Tahun</p>
+                                          <hr>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-6 mt-3">
+                                          <label class="tgl-gabung label-detail" id="tgl-gabung-lbl"
+                                             for="tgl-gabung">Tanggal
+                                             Bergabung</label><br>
+                                          <p class="value-detail">11 November 2022</p>
+                                          <hr>
+                                       </div>
+                                       <div class="col-md-6 mt-3">
+                                          <label class="tgl-berhenti labelAdd" id="tgl-berhenti-lbl"
+                                             for="tgl-berhenti">Tanggal
+                                             Berhenti</label><br>
+                                          <p class="value-detail">-</p>
+                                          <hr>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+
+                     <step v-for="step in steps" :currentstep="currentstep" :key="step.id" :step="step"
+                        :stepcount="steps.length" @step-change="stepChanged">
+                     </step>
+
+                     <div class="card-footer">
+                        <script type="x-template" id="step-navigation-template">
+                                <ol class="step-indicator">
+                                    <li v-for="step in steps" is="step-navigation-step" :key="step.id" :step="step" :currentstep="currentstep">
+                                    </li>
+                                </ol>
+                            </script>
+
+                        <script type="x-template" id="step-navigation-step-template">
+                                <li :class="indicatorclass">
+                                    <div class="step"><i :class="step.icon_class"></i></div>
+                                    <div class="caption hidden-xs hidden-sm">Step <span v-text="step.id"></span>: <span v-text="step.title"></span></div>
+                                </li>
+                            </script>
+
+                        <script type="x-template" id="step-template">
+                                <div class="step-wrapper" :class="stepWrapperClass">
+                                    <button type="button" class="btn btn-danger btn-kembali" @click="lastStep" :disabled="firststep">
+                                        Kembali
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-perbarui" @click="nextStep" :disabled="laststep" none="laststep">
+                                        Selanjutnya
+                                    </button>
+                                    <button type="submit" class="btn btn-primary btn-perbarui" v-if="laststep">
+                                        Submit
+                                    </button>
+                                </div>
+                            </script>
+                     </div>
+                  </div>
+               </div>
+            </form>
+            <!-- CLOSE CONTENT -->
+         </div>
+      </div>
+
+   </div>
+   <!-- /.container-fluid -->
+
+   </div>
+   <!-- End of Main Content -->
+
+   </div>
+   <!-- End of Content Wrapper -->
+
+   </div>
+   <!-- End of Page Wrapper -->
+
+   <!-- Scroll to Top Button-->
+   <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+   </a>
+
+   <!-- Logout Modal-->
+   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="" id="exampleModalLabel">Yakin untuk keluar?</h5>
+               <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">x</span>
+               </button>
+            </div>
+            <div class="modal-body">Pilih "Keluar" di bawah jika Anda siap untuk mengakhiri sesi Anda saat ini.
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-secondary" type="button" data-dismiss="modal">Kembali</button>
+               <form action="{{ route('logout" class="d-none" id="form-logout" method="post">
+                  @csrf
+               </form>
+               <a class="btn btn-primary" href="{{ route('logout" id="btn-logout">Keluar</a>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- Bootstrap core JavaScript-->
+   <script src="./public/master/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+   <!-- Core plugin JavaScript-->
+   <script src="./public/master/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+   <!-- Custom scripts for all pages-->
+   <script src="./public/master/js/sb-admin-2.min.js"></script>
+
+   <!-- Page level plugins -->
+   <script src="./public/master/vendor/chart.js/Chart.min.js"></script>
+
+   <!-- Page level custom scripts -->
+   <script src="./public/master/js/demo/chart-area-demo.js"></script>
+   <script src="./public/master/js/demo/chart-pie-demo.js"></script>
+
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+   <!-- DataTables -->
+   <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+   <!-- DataTables  & Plugins -->
+   <script src="./public/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+   <script src="./public/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+   <script src="./public/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+   <script src="./public/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+   <script src="./public/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+   <script src="./public/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+   <script src="./public/assets/plugins/jszip/jszip.min.js"></script>
+   <script src="./public/assets/plugins/pdfmake/pdfmake.min.js"></script>
+   <script src="./public/assets/plugins/pdfmake/vfs_fonts.js"></script>
+   <script src="./public/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+   <script src="./public/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+   <script src="./public/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+</body>
+
+</html>

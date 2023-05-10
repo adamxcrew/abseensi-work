@@ -1,237 +1,282 @@
-<!--
-=========================================================
-* Argon Dashboard - v1.2.0
-=========================================================
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-
-
-* Copyright  Creative Tim (http://www.creative-tim.com)
-* Coded by www.creative-tim.com
-
-
-
-=========================================================
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
-@php
-    $userAuth = Auth::user();
-@endphp
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-    <meta name="author" content="Creative Tim">
-    <meta name="csrf-token" content="{{csrf_token()}}" >
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>@yield('title')</title>
-    <script src="{{ asset('/assets/vendor/jquery/dist/jquery.min.js') }}"></script>
-    <!-- Favicon -->
-    <link rel="icon" href="{{ asset('/assets/img/brand/favicon.png') }}" type="image/png">
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
-    <!-- Icons -->
-    <link rel="stylesheet" href="{{ asset('/assets/vendor/nucleo/css/nucleo.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}"
-        type="text/css">
-    <!-- Page plugins -->
-    <!-- Argon CSS -->
-    <link rel="stylesheet" href="{{ asset('/assets/css/argon.css?v=1.2.0') }}" type="text/css">
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="{{ asset('/assets/newfrontend') }}/assets/img/wikrama-logo.png">
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <!-- BOOSTRAP ICONS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet'
+        href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.4/vue.js'></script>
+
+
+    <!-- Custom fonts for this template-->
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link href="{{ asset('/assets/newfrontend') }}/master/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="{{ asset('/assets/newfrontend') }}/master/css/sb-admin-2.min.css">
+    <link rel="stylesheet" href="{{ asset('/assets/newfrontend') }}/master/css/master.css">
+    <link rel="stylesheet" href="{{ asset('/assets/newfrontend') }}/master/css/dashboard.css">
+    <script src="{{ asset('/assets/newfrontend') }}/master/vendor/jquery/jquery.min.js"></script>
 
     <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset('/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/newfrontend') }}/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('/assets/newfrontend') }}/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('/assets/newfrontend') }}/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
-    {{-- toastr --}}
-    {{-- <link rel="stylesheet" href="{{ asset('/assets/css/toastr.css') }}"> --}}
-
-    {{-- Snackbar --}}
-    <link rel="stylesheet" href="{{ asset('/assets/css//snackbar.min.css') }}">
-    <script src="{{ asset('/assets/js/snackbar.min.js') }}"></script>
-    {{-- <script src="{{ asset('/assets/js/instascan.min.js') }}"></script> --}}
-    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('/assets/newfrontend') }}/assets/css//snackbar.min.css">
+    <script src="{{ asset('/assets/newfrontend') }}/assets/js/snackbar.min.js"></script>
 
     @yield('c_css')
 </head>
 
-<body>
-    <!-- Sidenav -->
-    <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
-        <div class="scrollbar-inner">
-            <!-- Brand -->
-            <div class="sidenav-header d-flex align-items-center justify-content-center">
-                <a class="navbar-brand"
-                    href="{{ route('home') }}">
-                    <img src="{{ asset('/assets/img/brand/blue.png') }}" class="navbar-brand-img" alt="...">
-                </a>
-                <div class="pr-3 sidenav-toggler sidenav-toggler-white d-lg-none" data-action="sidenav-pin"
-                    data-target="#sidenav-main">
-                    <div class="sidenav-toggler-inner">
-                        <i class="sidenav-toggler-line"></i>
-                        <i class="sidenav-toggler-line"></i>
-                        <i class="sidenav-toggler-line"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="navbar-inner">
-                <!-- Collapse -->
-                <div class="collapse navbar-collapse" id="sidenav-collapse-main">
-                    <!-- Nav items -->
-                    <ul class="navbar-nav">
-                        @include('_partials.menus')
-                    </ul>
-                    <!-- Divider -->
-                    <hr class="my-3">
-                </div>
-            </div>
-        </div>
-    </nav>
-    <!-- Main content -->
-    <div class="main-content" id="panel">
-        <!-- Topnav -->
-        <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Search form -->
-                    @yield('search')
-                    <!-- Navbar links -->
-                    <ul class="navbar-nav align-items-center  ml-md-auto ">
-                        <li class="nav-item d-xl-none">
-                            <!-- Sidenav toggler -->
-                            <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin"
-                                data-target="#sidenav-main">
-                                <div class="sidenav-toggler-inner">
-                                    <i class="sidenav-toggler-line"></i>
-                                    <i class="sidenav-toggler-line"></i>
-                                    <i class="sidenav-toggler-line"></i>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item d-sm-none">
-                            <a class="nav-link" href="#" data-action="search-show"
-                                data-target="#navbar-search-main">
-                                <i class="ni ni-zoom-split-in"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <div class="media align-items-center">
-                                    <span class="avatar avatar-sm rounded-circle">
-                                        <img alt="Image placeholder"
-                                            src="{{ asset('/uploads/images/' . $userAuth->avatar) }}">
-                                    </span>
-                                    <div class="media-body  ml-2  d-none d-lg-block">
-                                        <span
-                                            class="mb-0 text-sm  font-weight-bold">{{ $userAuth->name }}</span>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="dropdown-menu  dropdown-menu-right ">
-                                <div class="dropdown-header noti-title">
-                                    <h6 class="text-overflow m-0">Welcome!</h6>
-                                </div>
-                                <a href="{{ route('profile') }}" class="dropdown-item">
-                                    <i class="ni ni-single-02"></i>
-                                    <span>My profile</span>
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <form action="{{ route('logout') }}" class="d-none" id="form-logout"
-                                    method="post">
-                                    @csrf
-                                </form>
-                                <a href="{{ route('logout') }}"
-                                    onclick="event.preventDefault(); $('#form-logout').submit()" class="dropdown-item">
-                                    <i class="ni ni-user-run"></i>
-                                    <span>Logout</span>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- Header -->
-        <!-- Header -->
-        <div class="header bg-primary pb-6">
-            <div class="container-fluid">
-                <div class="header-body">
-                    <div class="row align-items-center py-4">
-                        <div class="col-lg-6 col-7">
-                            <nav aria-label="breadcrumb" class="d-md-inline-block ml-md-4">
-                                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                                    @yield('breadcrumb')
 
-                                </ol>
-                            </nav>
-                        </div>
-                        <div class="col-lg-6 col-5 text-right">
-                            @yield('action_btn')
-                        </div>
-                    </div>
-                    <!-- Card stats -->
-                    <div class="row" id="widgetsItems">
-                        @yield('widgets')
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Page content -->
-        <div class="container-fluid mt--6" id="parent-content">
 
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav sidebar accordion bg-sidebar" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
+                <div class="sidebar-brand-icon mt-4">
+                    <img src="{{ asset('/assets/newfrontend') }}/assets/img/wikrama-logo.png" width="80" alt="logowikrama">
+                </div>
+                <div class="sidebar-brand-text mt-3"><img src="{{ asset('/assets/newfrontend') }}/assets/img/text-wikrama.png" width="135"
+                        alt="text-wikrama"></sup>
+                </div>
+            </a>
+
+
+            <!-- menus -->
+            @include('_partials.menus')
+
+            <br>
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
             <div id="content">
-                @yield('content')
-            </div>
 
-            <!-- Footer -->
-            <footer class="footer pt-0">
-                <div class="row align-items-center justify-content-lg-between">
-                    <div class="col-lg-6">
-                        <div class="copyright text-center  text-lg-left  text-muted">
-                            &copy; {{ date('Y') }} <a href="https://www.creative-tim.com"
-                                class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand topbar mb-4 static-top navbg">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control btnSearch border-0 small" placeholder="Search ..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btnSearch" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
                         </div>
+                    </form>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Cari nama pegawai ..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Alerts -->
+                        <li class="nav-item topbar-adj mx-5">
+                            <a href="kml">Tambah
+                                Guru</a>
+                        </li>
+
+                        <!-- Nav Item - Messages -->
+                        <li class="nav-item topbar-adj mx-3">
+                            <a href="https://smkwikrama.sch.id/" target="__blank" class="text-topbar">Info
+                                Sekolah</a>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-nav small">Admin</span>
+                                <img class="img-profile rounded-circle" src="{{ asset('/assets/newfrontend') }}/master/img/img_profile.jpg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <img class="img-profile rounded-circle" src="{{ asset('/assets/newfrontend') }}/master/img/img_profile.jpg"
+                                        alt="">
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="/profile">
+                                    <i class="fas fa-users fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Info Saya
+                                </a>
+                                <!-- <a class="dropdown-item" href="#">
+                                    <i class="fas fa-city fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Info Perusahaan
+                                </a> -->
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Keluar
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <!-- TEMPAT SECTION CONTENT -->
+                <div class="container-fluid">
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                       <h1 class="h3 mb-0 judul-page"></h1>
+                       @yield('action_btn')
                     </div>
+
+                    @yield('content')
                 </div>
-            </footer>
+                <!-- CLOSE CONTENT -->
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="" id="exampleModalLabel">Yakin untuk keluar?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">x</span>
+                    </button>
+                </div>
+                <div class="modal-body">Pilih "Keluar" di bawah jika Anda siap untuk mengakhiri sesi Anda saat ini.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Kembali</button>
+                    <form action="{{ route('logout') }}" class="d-none" id="form-logout" method="post">
+                        @csrf
+                    </form>
+                    <button class="btn btn-primary" onclick="$('#form-logout').submit()" id="btn-logout">Keluar</button>
+                </div>
+            </div>
         </div>
     </div>
-    <!-- Argon Scripts -->
-    <!-- Core -->
-    <script src="{{ asset('/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('/assets/vendor/js-cookie/js.cookie.js') }}"></script>
-    <script src="{{ asset('/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js') }}"></script>
-    <script src="{{ asset('/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js') }}"></script>
-    <!-- Optional JS -->
-    <script src="{{ asset('/assets/vendor/chart.js/dist/Chart.min.js') }}"></script>
-    <script src="{{ asset('/assets/vendor/chart.js/dist/Chart.extension.js') }}"></script>
-    <!-- Argon JS -->
-    <script src="{{ asset('/assets/js/argon.js?v=1.2.0') }}"></script>
 
-    <!-- toastr -->
-    {{-- <script src="{{ asset('/assets/js/toastr.min.js') }}"></script> --}}
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('/assets/newfrontend') }}/master/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    {{-- sweetalert --}}
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('/assets/newfrontend') }}/master/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('/assets/newfrontend') }}/master/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{ asset('/assets/newfrontend') }}/master/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{ asset('/assets/newfrontend') }}/master/js/demo/chart-area-demo.js"></script>
+    <script src="{{ asset('/assets/newfrontend') }}/master/js/demo/chart-pie-demo.js"></script>
+
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <!-- DataTables -->
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <!-- DataTables  & Plugins -->
-    <script src="{{ asset('/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('/assets/plugins/jszip/jszip.min.js') }}"></script>
-    <script src="{{ asset('/assets/plugins/pdfmake/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('/assets/plugins/pdfmake/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('/assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('/assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('/assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('/assets/newfrontend') }}/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('/assets/newfrontend') }}/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ asset('/assets/newfrontend') }}/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="{{ asset('/assets/newfrontend') }}/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="{{ asset('/assets/newfrontend') }}/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="{{ asset('/assets/newfrontend') }}/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="{{ asset('/assets/newfrontend') }}/assets/plugins/jszip/jszip.min.js"></script>
+    <script src="{{ asset('/assets/newfrontend') }}/assets/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="{{ asset('/assets/newfrontend') }}/assets/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="{{ asset('/assets/newfrontend') }}/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="{{ asset('/assets/newfrontend') }}/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="{{ asset('/assets/newfrontend') }}/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <script>
         @if (Session::has('success'))
             Snackbar.show({
@@ -253,7 +298,6 @@
             })
         @endif;
     </script>
-
     @yield('script')
 </body>
 

@@ -8,7 +8,7 @@
 @endsection
 
 @section('action_btn')
-    <a href="{{route('submissions.create')}}" class="btn btn-default">Tambah Data</a>
+    <a href="{{route('submissions.create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary btnReport shadow-sm">Tambah Data</a>
 @endsection
 
 @section('content')
