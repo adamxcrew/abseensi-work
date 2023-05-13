@@ -1,0 +1,309 @@
+a.text-detail:hover {
+  text-decoration: none;
+}
+
+tr {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+
+  color: #aab2bb;
+}
+
+td {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+
+  color: #aab2bb;
+}
+
+th {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+thead {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+select {
+  color: #aab2bb;
+  border: none;
+  outline: none;
+  scroll-behavior: smooth;
+}
+
+a.rowDetail {
+  text-decoration: none;
+
+  background-color: red;
+}
+
+.bg-merah {
+  background-color: rgba(221, 114, 100, 0.2);
+  width: 91px;
+  text-align: center;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+
+  color: #dd7264;
+}
+
+.bg-kuning {
+  background-color: rgba(230, 191, 110, 0.2);
+  width: 91px;
+  text-align: center;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+
+  color: #e6bf6e;
+}
+
+.bg-hijau {
+  background-color: rgba(122, 193, 98, 0.2);
+  width: 91px;
+  text-align: center;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+
+  color: #7ac162;
+}
+
+.btnExp {
+  margin-top: 8px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+
+  color: #ffffff;
+
+  width: 130px;
+  height: 29px;
+
+  background: #0090e8;
+  border-radius: 5px;
+
+  margin-bottom: 10px;
+}
+
+.data-tanggal {
+  padding-top: 10px;
+  padding-right: 4px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  /* identical to box height */
+
+  color: #aab2bb;
+}
+
+.labeldasKehadiran {
+  margin-bottom: 1px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 9px;
+  line-height: 16px;
+  /* identical to box height */
+
+  color: #aab2bb;
+}
+
+.fontdasKehadiran {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 16px;
+
+  color: #aab2bb;
+}
+
+.fontdasKehadiran2 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 16px;
+
+  color: #aab2bb;
+
+  padding-left: 20px;
+}
+
+.valuedasKehadiran {
+  margin-bottom: 1px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  /* identical to box height */
+
+  color: #0090e8;
+}
+
+.imgDasKehadiran {
+  padding-top: 25px;
+}
+
+.textkehadiran {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 14px;
+  /* identical to box height */
+
+  color: #aab2bb;
+}
+
+.text-detail {
+  padding-top: 5px;
+  /* margin-left: 10px; */
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 9px;
+  line-height: 14px;
+
+  color: #aab2bb;
+}
+
+.text-detail2 {
+  padding-top: 5px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 9px;
+  line-height: 14px;
+
+  color: #aab2bb;
+}
+
+.borderDas {
+  border-right: 2px solid rgba(0, 0, 0, 0.05);
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.borderDas2 {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.detail {
+  margin-left: 11px;
+}
+
+.label-table {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #aab2bb;
+}
+
+.btn-kembali {
+  margin-top: 8px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+
+  color: #ffffff;
+
+  width: 80px;
+  height: 29px;
+
+  background: #0090e8;
+  border-radius: 5px;
+
+  margin-bottom: 10px;
+}
+
+.bread-crumb {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 24px;
+}
+
+
+.weekend {
+  background-color: rgba(221, 114, 100, 0.2);
+  width: 91px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+tr.weekend>td {
+  color: #DD7264;
+}
+
+tr.weekend>td>select {
+  background-color: rgba(248, 227, 224, 255);
+  color: #DD7264;
+}
+
+
+@media (min-width: 269px) and (max-width: 373px) {
+  .breadcrumb-item {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 250px) and (max-width: 939px) {
+  .data-tanggal {
+    display: none;
+  }
+
+  .d-flex {
+    flex-direction: column;
+  }
+
+  .btn-setting {
+    margin-bottom: 10px;
+  }
+
+  /* .d-flex{
+      display: block;
+   } */
+
+  .garis {
+    display: none;
+  }
+
+  input[type="date"] {
+    width: 130px;
+  }
+}

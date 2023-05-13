@@ -88,7 +88,6 @@ class RouteController extends Controller
 
             foreach ($datesInThisMonth as $dateInMonth) {
                 $attendanceDataByDate[$attendanceKey][$dateInMonth] = null;
-
                 foreach ($attendance as $attendanceValue) {
                     if ($attendanceValue->presence_date->format('d') == $dateInMonth) {
                         $attendanceDataByDate[$attendanceKey][$dateInMonth] = $attendanceValue->presence_status;

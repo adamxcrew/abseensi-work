@@ -1,0 +1,246 @@
+.jud1 {
+   margin-left: 5%;
+   margin-top: 5%;
+
+   margin-bottom: 0.1px;
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 18px;
+   line-height: 27px;
+   /* identical to box height */
+
+
+   color: #AAB2BB;
+}
+
+.jud2 {
+   margin-left: 5%;
+
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 300;
+   font-size: 14px;
+   line-height: 21px;
+   /* identical to box height */
+
+
+   color: #AAB2BB;
+}
+
+.btn-kembali {
+   background: #0090E8;
+   border: #0090E8;
+   width: 100px;
+   height: 30px;
+
+   border-radius: 5px;
+   text-align: center;
+   font-family: 'poppins-bold', sans-serif !important;
+   font-style: normal;
+   font-weight: 300;
+   font-size: 15px;
+   line-height: 18px;
+   color: #FFFFFF;
+   text-decoration: none;
+}
+
+.dataGroup {
+   font-family: 'poppins';
+}
+
+.data {
+   margin-left: 12px;
+}
+
+.lableDetail {
+   margin-left: 5px;
+
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 18px;
+   color: #AAB2BB;
+
+}
+
+.valueDetail {
+   margin-left: 10px;
+
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 300;
+   font-size: 12px;
+   line-height: 15px;
+   color: #B0B0B0;
+}
+
+.card-clock-in {
+   /* position: absolute;
+    top: 133px;
+    left: 200px; */
+
+
+   width: 200px;
+   height: 74px;
+
+   background: rgba(122, 193, 98, 0.2);
+   border-radius: 10px;
+}
+
+.text-clock-in {
+   position: absolute;
+   left: 20px;
+   top: 0px;
+
+   width: 100px;
+   height: 54px;
+   display: grid;
+
+   font-family: 'Poppins';
+   font-weight: 700;
+   font-size: 36px;
+   line-height: 70px;
+
+   text-align: center;
+   /* text-align: center; */
+
+   color: #7AC162;
+
+}
+
+.gmt-clock-in {
+   position: absolute;
+   left: 124px;
+   top: 30px;
+
+   width: 30px;
+   height: 24px;
+
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 16px;
+   line-height: 24px;
+
+   color: #7AC162;
+}
+
+/* .block-clock {
+    position: absolute;
+    top: 0px;
+    width: 5px;
+    height: 74px;
+ 
+    background: #7AC162;
+ } */
+
+.keterangan-clock-in {
+   position: absolute;
+   bottom: 65px;
+   width: 48px;
+   height: 18px;
+
+
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 12px;
+   line-height: 18px;
+
+   color: #AAB2BB;
+}
+
+
+/* ===================== */
+
+.card-clock-out {
+   /* position: absolute;
+    top: 133px;
+    left: 450px; */
+
+
+   width: 200px;
+   height: 74px;
+
+   background: rgba(221, 114, 100, 0.2);
+   border-radius: 10px;
+}
+
+.text-clock-out {
+   position: absolute;
+   left: 20px;
+   top: 0px;
+
+   width: 100px;
+   height: 54px;
+
+   font-family: 'Poppins';
+   font-weight: 700;
+   font-size: 36px;
+   line-height: 70px;
+
+   text-align: center;
+   /* text-align: center; */
+
+   color: #DD7264;
+
+}
+
+.gmt-clock-out {
+   position: absolute;
+   left: 120px;
+   top: 30px;
+
+   width: 30px;
+   height: 24px;
+
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 16px;
+   line-height: 24px;
+
+   color: #DD7264;
+}
+
+.keterangan-clock-out {
+   position: absolute;
+   left: 450px;
+   top: 110px;
+   bottom: 65px;
+   width: 48px;
+   height: 18px;
+
+
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 12px;
+   line-height: 18px;
+
+   color: #AAB2BB;
+}
+
+.map {
+   width: 5px;
+   height: 1px;
+}
+
+iframe {
+   /* position: absolute;
+    left: 710px;
+    bottom: 670px; */
+
+   width: 200px;
+   height: 147px;
+}
+
+.bread-crumb {
+   font-family: "Poppins";
+   font-style: normal;
+   font-weight: 400;
+   font-size: 12px;
+   line-height: 24px;
+}

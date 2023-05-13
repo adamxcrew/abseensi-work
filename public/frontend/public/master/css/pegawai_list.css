@@ -1,0 +1,110 @@
+tr {
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 14px;
+   line-height: 21px;
+
+
+   color: #AAB2BB;
+
+
+}
+
+td {
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 21px;
+
+
+   color: #AAB2BB;
+}
+
+th {
+   background-color: red
+}
+
+thead {
+   background-color: rgba(0, 0, 0, 0.05);
+   border-radius: 10px 10px 0px 0px;
+}
+
+.rowName {
+   color: #AAB2BB;
+}
+
+.rowName:hover {
+   color: black;
+}
+
+a {
+   text-decoration: none !important;
+}
+
+
+.bg-permanen {
+   background-color: rgba(221, 114, 100, 0.2);
+   width: 91px;
+   text-align: center;
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 21px;
+
+   color: #DD7264;
+}
+
+.bg-percobaan {
+   background-color: rgba(230, 191, 110, 0.2);
+   width: 91px;
+   text-align: center;
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 21px;
+
+   color: #E6BF6E;
+}
+
+.bg-magang {
+   background-color: rgba(122, 193, 98, 0.2);
+   width: 91px;
+   text-align: center;
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 21px;
+
+   color: #7AC162;
+}
+
+.btnExp {
+
+   width: 120px;
+   height: 30px;
+
+   background: #0090E8;
+   border-radius: 5px;
+
+   font-family: "Poppins";
+   font-style: normal;
+   font-weight: 300;
+   font-size: 12px;
+   line-height: 18px;
+   /* identical to box height */
+
+   color: #FFFFFF;
+}
+
+.bread-crumb {
+   font-family: "Poppins";
+   font-style: normal;
+   font-weight: 400;
+   font-size: 12px;
+   line-height: 24px;
+}

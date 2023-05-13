@@ -24,6 +24,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // run factories
-        // Attendances::factory(40)->create();
+        Attendances::factory(40)->create();
     }
 }

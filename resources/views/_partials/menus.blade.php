@@ -28,13 +28,13 @@
             <span class="nav-link-text">Timeoff Settings</span>
         </a>
     </li>
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link {{ $routeActive == 'attendances.index' ? 'active' : '' }}"
             href="{{ route('attendances.index') }}">
             <i class="fas fa-calendar text-danger"></i>
             <span class="nav-link-text">Attendances</span>
         </a>
-    </li>
+    </li> --}}
 @endif
 
 @if (Auth::user()->role != 'admin')

@@ -1,0 +1,289 @@
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+   border-style: none;
+}
+
+
+button.label-angka {
+   border: none;
+   background-color: transparent;
+}
+
+.judul-page {
+   font-family: "Poppins";
+
+   font-style: normal;
+   font-size: 24px;
+   line-height: 21px;
+
+   color: #aab2bb;
+}
+
+.label-dashboard {
+   font-family: "Poppins";
+   font-style: normal;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 21px;
+
+   margin-bottom: 5px;
+   color: #aab2bb;
+}
+
+.label-card {
+   font-family: "Poppins";
+   font-style: normal;
+   font-weight: 500;
+   font-size: 16px;
+   line-height: 24px;
+   /* identical to box height */
+
+   color: #aab2bb;
+}
+
+.label-card2 {
+   font-family: "Poppins";
+   font-style: normal;
+   font-weight: 300;
+   font-size: 12px;
+   line-height: 18px;
+
+   color: #aab2bb;
+}
+
+.label-dashboard-bawah {
+   font-family: "Poppins";
+   font-style: normal;
+   font-weight: 10;
+   font-size: 12px;
+
+   color: #aab2bb;
+}
+
+.shadow-card {
+   box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 5%);
+}
+
+.btnReport {
+   background-color: #0090e8;
+   border-color: #0090e8;
+}
+
+.btnReport:hover {
+   background-color: #0090e8;
+   border-color: #0090e8;
+}
+
+.body-text {
+   font-family: "Poppins";
+   font-style: normal;
+   font-weight: 400;
+   font-size: 10px;
+   line-height: 16px;
+
+   color: #aab2bb;
+
+   cursor: pointer;
+}
+
+
+
+.text-permanen {
+   font-size: 11px;
+   font-weight: 500;
+   cursor: pointer;
+   color: #2196F3;
+}
+
+.text-percobaan {
+   margin-left: 0px;
+   font-size: 11px;
+   font-weight: 500;
+   cursor: pointer;
+   color: #4CAF50;
+}
+
+.text-kontrak {
+   font-size: 11px;
+   font-weight: 500;
+   cursor: pointer;
+   color: #FFC107;
+}
+
+.text-magang {
+   margin-right: 13px;
+}
+
+.bg-red {
+   background-color: #FF3407;
+}
+
+.bg-yellow {
+   background-color: #FFC107;
+   color: #FFC107;
+}
+
+.bg-green {
+   background-color: #4CAF50;
+   color: #4CAF50;
+}
+
+.bg-blue {
+   background-color: #2196F3;
+}
+
+.small-label {
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 300;
+   font-size: 12px;
+   line-height: 18px;
+
+   color: #AAB2BB;
+}
+
+.mini-label {
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 300;
+   font-size: 8px;
+   line-height: 10px;
+
+   margin-top: -2px;
+   margin-left: 1px;
+
+   color: #AAB2BB;
+}
+
+.alert-icon {
+   color: red;
+}
+
+.label-persen-chart {
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 21px;
+
+   padding-left: 15px;
+   color: #AAB2BB;
+
+}
+
+.label-persen-chart2 {
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 21px;
+
+   padding-left: 15px;
+   color: #AAB2BB;
+
+}
+
+.adjust-label {
+   padding-top: 3px;
+}
+
+.adjust-legend {
+   margin-bottom: 10px;
+}
+
+.card-dashboard {
+   width: auto;
+   height: 110px;
+}
+
+.body-card {
+   margin-top: 5px;
+}
+
+.adjust-card {
+   margin-left: 25px;
+}
+
+.adjust-chart {
+   margin-right: 20px;
+}
+
+/* MODAL */
+.modal-title {
+
+   font-family: 'Poppins';
+   font-style: normal;
+   font-weight: 600;
+   font-size: 14px;
+   line-height: 21px;
+   color: #FFFFFF;
+
+   padding-top: 8px;
+   height: 38px;
+   background-color: #0090E8;
+   border-radius: 10px;
+   color: #fff;
+}
+
+.pointer {
+   cursor: pointer;
+}
+
+.tooltip-main {
+   width: 15px;
+   height: 15px;
+   border-radius: 50%;
+   font-weight: 400;
+   background: #f3f3f3;
+   border: 1px solid #737373;
+   color: #737373;
+   margin: 4px 121px 0 5px;
+   float: right;
+   text-align: left !important;
+}
+
+.tooltip-qm {
+   float: left;
+   margin: -2px 0px 3px 4px;
+   font-size: 12px;
+}
+
+.tooltip-inner {
+   font-family: "Poppins";
+   max-width: 236px !important;
+   font-size: 12px;
+   padding: 10px 15px 10px 20px;
+   background: #FFFFFF;
+   color: rgba(0, 0, 0, .7);
+   border: 1px solid grey;
+   text-align: left;
+}
+
+.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+   border-bottom-color: red;
+}
+
+
+/* MEDIA QUERIES */
+
+@media (min-width: 1100px) and (max-width: 1395px) {
+   .body-text {
+      padding: 0px 5px 0px 0px;
+   }
+}
+
+@media (min-width: 1396px) and (max-width: 1900px) {
+   .body-text {
+      padding: 0px 20px 0px 0px;
+   }
+}
+
+@media (min-width: 1901) and (max-width: 2400) {
+   .body-text {
+      padding: 0px 50px 0px 0px;
+   }
+}

@@ -1,0 +1,211 @@
+::placeholder {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 15px;
+  /* identical to box height */
+
+  color: #b0b0b0;
+}
+
+.cont-profile {
+  padding-right: 344px;
+  height: 184px;
+  background-color: #0090e8;
+  border-radius: 8px;
+}
+
+a.listgroup-container {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #0090e8;
+
+  text-decoration: none;
+  border: none;
+
+  border-radius: 10px;
+}
+
+.listgroup-container:hover {
+  font-family: "Poppins";
+  background-color: #0090e8;
+  color: white;
+
+  border-radius: 10px;
+}
+
+.bread-crumb {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 24px;
+}
+
+.label-detail {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+
+  color: #aab2bb;
+}
+
+.position-adjust {
+  padding-top: 55px;
+  padding-left: 60px;
+}
+
+.position-adjust2 {
+  padding-top: 55px;
+  padding-left: 20px;
+}
+
+.value-detail {
+  margin-left: 10px;
+  margin-top: 10px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 15px;
+
+  color: #b0b0b0;
+}
+
+.value-detailHero {
+  margin-left: 10px;
+  margin-top: 10px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 15px;
+
+  color: #b0b0b0;
+
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+hr.underline {
+  width: 280px;
+}
+
+hr.underline2 {
+  width: 600px;
+}
+
+input.heroInputPegawai {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 15px;
+
+  padding-left: 10px;
+  width: 625px;
+  height: 40px;
+
+  border-radius: 4px;
+  border: 1px solid #ccc;
+
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.btn-edit {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 9px;
+  width: 299px;
+  height: 35px;
+
+  border-radius: 10px;
+  text-align: center;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 15px;
+  background-color: white;
+  color: #7ac162;
+  text-decoration: none;
+  border-color: #7ac162 !important;
+}
+
+.btn-edit:hover {
+  background-color: #7ac162;
+}
+
+.pageNumber {
+  font-family: "Poppins";
+  padding-left: 24px;
+  padding-bottom: 10px;
+}
+
+.bg-headercard {
+  height: 80px;
+  background-color: #0090e8;
+}
+
+.pict-header {
+  border-radius: 50%;
+  width: 100px;
+  margin-top: 15px;
+}
+
+.body-card {
+  margin-top: 50px;
+}
+
+.title-card {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+
+  color: #b0b0b0;
+}
+
+.title-card2 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 15px;
+  /* identical to box height */
+
+  color: #b0b0b0;
+}
+
+.font-bold {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 15px;
+
+  color: #b0b0b0;
+}
+
+.titikdua {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.titikdua2 {
+  padding-left: 12px;
+  padding-right: 5px;
+}
+
+.card-shape {
+  border-radius: 10px;
+}
