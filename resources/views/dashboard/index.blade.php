@@ -48,11 +48,11 @@
                       <div class="text-md label-dashboard">
                          Total Absensi
                          <div class="mini-label dateLocal">
-                            {{ $datePickedFormated }}
+                            {{ $today }}
                          </div>
                       </div>
                       <button class="h3 mb-0 text-primary label-angka" data-toggle="modal"
-                         data-target="#modalTerlambat">{{ $attendanceCount['total'] }}</button>
+                         data-target="#modalTotalAbsensi">{{ $attendanceCount['total']['total'] }}</button>
                       <div class="text-md mb-0 label-dashboard-bawah">Pegawai</div>
                    </div>
                    <div class="col-auto adjust-chart">
@@ -64,13 +64,13 @@
        </div>
 
        <!-- START MODAL TERLAMBAT -->
-       <div class="modal fade" id="modalTerlambat" aria-hidden="true" aria-labelledby="modalTerlambatLabel">
+       <div class="modal fade" id="modalTotalAbsensi" aria-hidden="true" aria-labelledby="modalTerlambatLabel">
           <div class="modal-dialog modal-xl">
              <div class="modal-content">
                 <div class="modal-header">
                    <div class="col">
                       <h5 class="modal-title text-center dateLocalTerlambat" id="modalToggleLabel">
-                         {{ $datePickedFormated }}
+                         {{ $today }}
                       </h5>
                    </div>
                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
@@ -87,28 +87,18 @@
                          </tr>
                       </thead>
                       <tbody>
-
-                         <tr>
-                            <td>1</td>
-                            <td>Maman Sutardi</td>
-                            <td>Finance</td>
-                            <td>Junior Staff</td>
-                         </tr>
-
-                         <tr>
-                            <td>2</td>
-                            <td>Ascelion Susanto</td>
-                            <td>Sales</td>
-                            <td>Sales Manager</td>
-                         </tr>
-
-                         <tr>
-                            <td>3</td>
-                            <td>Michael Winalian</td>
-                            <td>Developer</td>
-                            <td>Senior Backend Developer</td>
-                         </tr>
-
+                        @forelse ($attendanceCount['total']['employee_id'] as $employeeAbsen)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $employeeAbsen->name }}</td>
+                                <td>{{ $employeeAbsen->employee->employee_tier }}</td>
+                                <td>{{ $employeeAbsen->employee->employee_tier }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center">Tidak ada data</td>
+                            </tr>
+                        @endforelse
                       </tbody>
                    </table>
                 </div>
@@ -126,11 +116,11 @@
                       <div class="text-md label-dashboard">
                          Tidak Hadir
                          <div class="mini-label dateLocal">
-                            {{ $datePickedFormated }}
+                            {{ $today }}
                          </div>
                       </div>
                       <button class="h3 mb-0 text-primary label-angka" data-toggle="modal"
-                         data-target="#modalTidakHadir">{{ $attendanceCount['alpa'] }}</button>
+                         data-target="#modalTidakHadir">{{ $attendanceCount['alpa']['total'] }}</button>
                       <div class="text-md mb-0 label-dashboard-bawah">Pegawai</div>
                    </div>
                    <div class="col-auto adjust-chart">
@@ -148,7 +138,7 @@
                 <div class="modal-header">
                    <div class="col">
                       <h5 class="modal-title text-center dateLocalTidakHadir" id="modalToggleLabel">
-                         <?= date('d F Y ') ?>
+                         {{ $today }}
                       </h5>
                    </div>
                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
@@ -165,79 +155,18 @@
                          </tr>
                       </thead>
                       <tbody>
-
-                         <!-- DUMMYS DATA -->
-
-                         <tr>
-                            <td>1</td>
-                            <td>Bambang Sutrisno</td>
-                            <td>Finance</td>
-                            <td>Senior Sales</td>
-                         </tr>
-
-                         <tr>
-                            <td>2</td>
-                            <td>Erika Manopo</td>
-                            <td>HR</td>
-                            <td>Recruitment Staff</td>
-                         </tr>
-
-                         <tr>
-                            <td>3</td>
-                            <td>Jerhemy Owen</td>
-                            <td>Developer</td>
-                            <td>Junior Frontend Developer</td>
-                         </tr>
-
-                         <tr>
-                            <td>4</td>
-                            <td>Christoffel Lunar</td>
-                            <td>Marketing</td>
-                            <td>Marketing Manager</td>
-                         </tr>
-
-                         <tr>
-                            <td>5</td>
-                            <td>Hans Christian Sugijanto</td>
-                            <td>Developer</td>
-                            <td>Fullstack Developer</td>
-                         </tr>
-
-                         <tr>
-                            <td>6</td>
-                            <td>Eko Setyono Wibowo</td>
-                            <td>Developer</td>
-                            <td>Junior Engineer</td>
-                         </tr>
-
-                         <tr>
-                            <td>7</td>
-                            <td>Xaverius Andrea</td>
-                            <td>Produksi</td>
-                            <td>Supervisor</td>
-                         </tr>
-
-                         <tr>
-                            <td>8</td>
-                            <td>Agus Susanto</td>
-                            <td>Produksi</td>
-                            <td>Operator</td>
-                         </tr>
-
-                         <tr>
-                            <td>9</td>
-                            <td>Yuma Soerianto</td>
-                            <td>Developer</td>
-                            <td>Product Manager</td>
-                         </tr>
-
-                         <tr>
-                            <td>10</td>
-                            <td>Marteen Suteja</td>
-                            <td>Marketing</td>
-                            <td>Marketing Manager</td>
-                         </tr>
-
+                        @forelse ($attendanceCount['alpa']['employee_id'] as $employeeAbsen)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $employeeAbsen->name }}</td>
+                                <td>{{ $employeeAbsen->employee->employee_tier }}</td>
+                                <td>{{ $employeeAbsen->employee->employee_tier }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center">Tidak ada data</td>
+                            </tr>
+                        @endforelse
                       </tbody>
                    </table>
                 </div>
@@ -255,11 +184,11 @@
                       <div class="text-md label-dashboard">
                          Cuti
                          <div class="mini-label dateLocal">
-                            {{ $datePickedFormated }}
+                            {{ $today }}
                          </div>
                       </div>
                       <button class="h3 mb-0 text-primary label-angka" data-toggle="modal"
-                         data-target="#modalCuti">{{ $attendanceCount['cuti'] }}</button>
+                         data-target="#modalCuti">{{ $attendanceCount['cuti']['total'] }}</button>
                       <div class="text-md mb-0 label-dashboard-bawah">Pegawai</div>
                    </div>
                    <div class="col-auto adjust-chart">
@@ -277,7 +206,7 @@
                 <div class="modal-header">
                    <div class="col">
                       <h5 class="modal-title text-center dateLocalCuti" id="modalToggleLabel">
-                         {{ $datePickedFormated }}
+                         {{ $today }}
                       </h5>
                    </div>
                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
@@ -294,44 +223,18 @@
                          </tr>
                       </thead>
                       <tbody>
-
-                         <!-- DUMMYS DATA -->
-
-                         <tr>
-                            <td>1</td>
-                            <td>Kezia Lizina</td>
-                            <td>Finance</td>
-                            <td>Senior Sales</td>
-                         </tr>
-
-                         <tr>
-                            <td>2</td>
-                            <td>Erika Manopo</td>
-                            <td>HR</td>
-                            <td>Recruitment Staff</td>
-                         </tr>
-
-                         <tr>
-                            <td>3</td>
-                            <td>Brandon Soekresno</td>
-                            <td>Developer</td>
-                            <td>Junior Frontend Developer</td>
-                         </tr>
-
-                         <tr>
-                            <td>4</td>
-                            <td>Adelya Salsa</td>
-                            <td>Marketing</td>
-                            <td>Marketing Manager</td>
-                         </tr>
-
-                         <tr>
-                            <td>5</td>
-                            <td>Vincent Sugijanto</td>
-                            <td>Developer</td>
-                            <td>Fullstack Developer</td>
-                         </tr>
-
+                        @forelse ($attendanceCount['cuti']['employee_id'] as $employeeAbsen)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $employeeAbsen->name }}</td>
+                                <td>{{ $employeeAbsen->employee->employee_tier }}</td>
+                                <td>{{ $employeeAbsen->employee->employee_tier }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center">Tidak ada data</td>
+                            </tr>
+                        @endforelse
                       </tbody>
                    </table>
                 </div>
@@ -348,11 +251,11 @@
                       <div class="text-md label-dashboard">
                          Dinas Luar
                          <div class="mini-label dateLocal">
-                            {{ $datePickedFormated }}
+                            {{ $today }}
                          </div>
                       </div>
                       <button class="h3 mb-0 text-primary label-angka" data-toggle="modal"
-                         data-target="#modalDinasLuar">5</button>
+                         data-target="#modalDinasLuar">{{ $attendanceCount['dinas_luar']['total'] }}</button>
                       <div class="text-md mb-0 label-dashboard-bawah">Pegawai</div>
                    </div>
                    <div class="col-auto adjust-chart">
@@ -371,7 +274,7 @@
              <div class="modal-header">
                 <div class="col">
                    <h5 class="modal-title text-center dateLocalDinasLuar" id="modalToggleLabel">
-                      {{ $datePickedFormated }}
+                      {{ $today }}
                    </h5>
                 </div>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
@@ -388,44 +291,18 @@
                       </tr>
                    </thead>
                    <tbody>
-
-                      <!-- DUMMYS DATA -->
-
-                      <tr>
-                         <td>1</td>
-                         <td>Felice Chrismarry Lu</td>
-                         <td>Finance</td>
-                         <td>Senior Sales</td>
-                      </tr>
-
-                      <tr>
-                         <td>2</td>
-                         <td>Oza Rangkuti</td>
-                         <td>HR</td>
-                         <td>Recruitment Staff</td>
-                      </tr>
-
-                      <tr>
-                         <td>3</td>
-                         <td>Yurino Putra Angkawijaya</td>
-                         <td>Developer</td>
-                         <td>Junior Frontend Developer</td>
-                      </tr>
-
-                      <tr>
-                         <td>4</td>
-                         <td>Eko Julianto</td>
-                         <td>Marketing</td>
-                         <td>Marketing Manager</td>
-                      </tr>
-
-                      <tr>
-                         <td>5</td>
-                         <td>Edwin Darmawan</td>
-                         <td>Developer</td>
-                         <td>Fullstack Developer</td>
-                      </tr>
-
+                    @forelse ($attendanceCount['dinas_luar']['employee_id'] as $employeeAbsen)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $employeeAbsen->name }}</td>
+                                <td>{{ $employeeAbsen->employee->employee_tier }}</td>
+                                <td>{{ $employeeAbsen->employee->employee_tier }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center">Tidak ada data</td>
+                            </tr>
+                        @endforelse
                    </tbody>
                 </table>
              </div>
@@ -562,7 +439,7 @@
 
        <div class="col-xl-8 col-lg-7">
           <div class="d-flex justify-content-between">
-             <h6 class="label-card">Total Pegawai</h6>
+             <h6 class="label-card">Total Pegawai {{ $yearDatePickedFormated }}</h6>
              <!-- <h6 class="label-card2">Lihat</h6> -->
           </div>
           <div class="card shadow-card mb-4">
@@ -578,7 +455,7 @@
        </div>
     </div>
 
-    <div class="row">
+    <div class="row mt-2">
         <div class="col-12">
             <div class="card shadow">
                 <div class="card-header bg-transparent border-0 text-white">
@@ -637,6 +514,8 @@
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script>
     var gendersOfficerData = @json($gendersOfficerData);
+    var totalEmployeePerMonthData = @json($totalEmployeePerMonthData);
+    var yearDatePickedFormated = @json($yearDatePickedFormated);
 </script>
 <script type="text/javascript">
    Highcharts.chart('myChart', {
@@ -644,10 +523,11 @@
          type: 'column'
       },
       title: {
-         text: 'Total Pegawai SMK Wikrama Bogor'
+         text: 'Total Pegawai SMK Wikrama Bogor Tahun ' + yearDatePickedFormated
       },
       xAxis: {
-         categories: ['Januari', 'Februari', 'Maret',]
+         categories: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September',
+            'Oktober', 'November', 'Desember']
       },
       yAxis: {
          title: {
@@ -660,9 +540,9 @@
          }
       },
       series: [{
-         name: 'Data 1',
+         name: 'Total Pegawai',
          color: '#165C9E',
-         data: [49.9, 71.5, 106.4]
+            data: Object.values(totalEmployeePerMonthData)
       }]
    });
 

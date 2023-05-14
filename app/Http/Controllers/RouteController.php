@@ -14,10 +14,12 @@ use Illuminate\Support\Facades\DB;
 class RouteController extends Controller
 {
     protected $getDatesInThisMonth = [];
+    protected $getMonthInThisYear = [];
 
     public function __construct()
     {
         $this->getDatesInThisMonth = $this->getDatesInThisMonth();
+        $this->getMonthInThisYear = $this->getMonthInThisYear();
     }
 
     public function getDatesInThisMonth()
@@ -31,6 +33,17 @@ class RouteController extends Controller
         return $days;
     }
 
+    public function getMonthInThisYear()
+    {
+        $months = [];
+
+        for ($i = 1; $i <= 12; $i++) {
+            $months[] = $i;
+        }
+
+        return $months;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -40,6 +53,8 @@ class RouteController extends Controller
     {
         $datePicked = request()->date ?? date('Y-m');
         $datePickedFormated = Carbon::parse($datePicked)->format('F Y');
+        $yearDatePickedFormated = Carbon::parse($datePicked)->format('Y');
+        $today = date('d F Y');
 
         // ambil data attendance dan digroup berdasarkan employee_id dan distinct
         $attendances = Attendances::distinct()
@@ -49,6 +64,17 @@ class RouteController extends Controller
             return $query->where('employee_id', Auth::user()->employee->id);
         })
         ->get()->groupBy('employee.user.fullname');
+
+        // all attendance today
+        $attendancesToday = Attendances::distinct()
+        ->whereDate('presence_date', date('Y-m-d'))
+        ->when(Auth::user()->role == 'teacher', function ($query) {
+            return $query->where('employee_id', Auth::user()->employee->id);
+        })
+        ->get();
+
+        // memuat semua detail karyawan
+        $employees = EmployeeProfile::all(['id', 'user_id', 'employee_tier'])->keyBy('id');
 
         $officerLevel = User::select(
             DB::raw("SUM(CASE WHEN role = 'admin' THEN 1 ELSE 0 END) as admin_total"),
@@ -70,6 +96,11 @@ class RouteController extends Controller
             DB::raw("COUNT(*) as total_personal")
         )
         ->first();
+
+        $totalEmployeePerMonth = User::select(DB::raw("DATE_FORMAT(created_at, '%m') as month"), DB::raw('count(*) as total_users'))
+        ->whereYear('created_at', date('Y', strtotime($datePicked)))
+        ->groupBy('month')
+        ->get();
 
         $officerLevelData = [
             'admin' => [
@@ -110,16 +141,38 @@ class RouteController extends Controller
 
 
         $datesInThisMonth = $this->getDatesInThisMonth;
+        $monthInThisYear = $this->getMonthInThisYear;
 
         $attendanceDataByDate = [];
         $attendanceCount = [
-            'hadir' => 0,
-            'izin' => 0,
-            'sakit' => 0,
-            'alpa' => 0,
-            'cuti' => 0,
-            'total' => 0,
-            'dinas_luar' => 0,
+            'hadir' => [
+                'total'=> 0,
+                'employee_id' => [],
+            ],
+            'izin' => [
+                'total'=> 0,
+                'employee_id' => [],
+            ],
+            'sakit' => [
+                'total'=> 0,
+                'employee_id' => [],
+            ],
+            'alpa' => [
+                'total'=> 0,
+                'employee_id' => [],
+            ],
+            'cuti' => [
+                'total'=> 0,
+                'employee_id' => [],
+            ],
+            'total' => [
+                'total'=> 0,
+                'employee_id' => [],
+            ],
+            'dinas_luar' => [
+                'total'=> 0,
+                'employee_id' => [],
+            ],
         ];
 
         foreach ($attendances as $attendanceKey => $attendance) {
@@ -132,38 +185,61 @@ class RouteController extends Controller
                         if($attendanceValue->clock_out){
                             $attendanceDataByDate[$attendanceKey][$dateInMonth] = $attendanceValue->presence_status;
                         }
-
-                        $attendanceValue->presence_status = strtolower($attendanceValue->presence_status);
-
-                        if ($attendanceValue->presence_status == 'hadir') {
-                            $attendanceCount['hadir']++;
-                        } elseif ($attendanceValue->presence_status == 'izin') {
-                            $attendanceCount['izin']++;
-                        } elseif ($attendanceValue->presence_status == 'sakit') {
-                            $attendanceCount['sakit']++;
-                        } elseif ($attendanceValue->presence_status == 'alpa') {
-                            $attendanceCount['alpa']++;
-                        } elseif ($attendanceValue->presence_status == 'cuti') {
-                            $attendanceCount['cuti']++;
-                        } elseif ($attendanceValue->presence_status == 'dinas_luar') {
-                            $attendanceCount['dinas_luar']++;
-                        }
-                    }
-
-                    if (!$attendanceValue->clock_in && !$attendanceValue->clock_out) {
-                        $attendanceCount['alpa']++;
                     }
                 }
             }
+        }
 
-            $attendanceCount['total'] = $attendanceCount['hadir'] + $attendanceCount['izin'] + $attendanceCount['sakit'] + $attendanceCount['alpa'] + $attendanceCount['cuti'];
+        $totalEmployeePerMonthData = [];
+        foreach($monthInThisYear as $month){
+            $totalEmployeePerMonthData[$month] = 0;
+
+            foreach($totalEmployeePerMonth as $totalEmployee){
+                if($totalEmployee->month == $month){
+                    $totalEmployeePerMonthData[$month] = $totalEmployee->total_users;
+                }
+            }
+        }
+
+        foreach ($attendancesToday as $key => $valueAttendanceToday) {
+            $valueAttendanceToday->presence_status = strtolower($valueAttendanceToday->presence_status);
+
+            if ($valueAttendanceToday->presence_status == 'hadir') {
+                $attendanceCount['hadir']['total']++;
+                array_push($attendanceCount['hadir']['employee_id'], $valueAttendanceToday->employee_id);
+            } elseif ($valueAttendanceToday->presence_status == 'izin') {
+                $attendanceCount['izin']['total']++;
+                array_push($attendanceCount['izin']['employee_id'], $valueAttendanceToday->employee_id);
+            } elseif ($valueAttendanceToday->presence_status == 'sakit') {
+                $attendanceCount['sakit']['total']++;
+                array_push($attendanceCount['sakit']['employee_id'], $valueAttendanceToday->employee_id);
+            } elseif ($valueAttendanceToday->presence_status == 'alpa'&& $employees->has($valueAttendanceToday->employee_id)) {
+                $attendanceCount['alpa']['total']++;
+                array_push($attendanceCount['alpa']['employee_id'], $employees[$valueAttendanceToday->employee_id]->user);
+            } elseif ($valueAttendanceToday->presence_status == 'cuti' && $employees->has($valueAttendanceToday->employee_id)) {
+                $attendanceCount['cuti']['total']++;
+                array_push($attendanceCount['cuti']['employee_id'], $employees[$valueAttendanceToday->employee_id]->user);
+            } elseif ($valueAttendanceToday->presence_status == 'dinas_luar'&& $employees->has($valueAttendanceToday->employee_id)) {
+                $attendanceCount['dinas_luar']['total']++;
+                array_push($attendanceCount['dinas_luar']['employee_id'], $employees[$valueAttendanceToday->employee_id]->user);
+            }
+
+            if (!$valueAttendanceToday->clock_in && !$valueAttendanceToday->clock_out) {
+                $attendanceCount['alpa']['total']++;
+                array_push($attendanceCount['alpa']['employee_id'], $valueAttendanceToday->employee_id);
+            }
+
+            if ($valueAttendanceToday->presence_status == 'hadir') {
+                $attendanceCount['total']['total'] = $attendanceCount['hadir']['total'] + $attendanceCount['izin']['total'] + $attendanceCount['sakit']['total'] + $attendanceCount['cuti']['total'];
+                array_push($attendanceCount['total']['employee_id'], $employees[$valueAttendanceToday->employee_id]->user);
+            }
         }
 
         $hasScheduleToday = Attendances::where('employee_id', Auth::user()->employee->id)
                 ->whereDate('presence_date', date('Y-m-d'))
                 ->first() ?? null;
 
-        return view('dashboard.index', compact('attendances', 'datesInThisMonth', 'attendanceDataByDate', 'attendanceCount', 'datePicked', 'hasScheduleToday', 'datePickedFormated', 'officerLevelData', 'statsOfficerData', 'gendersOfficerData'));
+        return view('dashboard.index', compact('attendances', 'datesInThisMonth', 'attendanceDataByDate', 'attendanceCount', 'datePicked', 'hasScheduleToday', 'datePickedFormated', 'officerLevelData', 'statsOfficerData', 'gendersOfficerData', 'totalEmployeePerMonthData', 'yearDatePickedFormated', 'today'));
 
     }
 }

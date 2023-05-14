@@ -28,6 +28,7 @@ class PersonalProfileSeeder extends Seeder
                 'birth_place'=> 'lorem 1',
                 'gender'=> 'male',
                 'religion'=> 'islam',
+                'created_at'=> now(),
             ],
             [
                 'uuid'=> Str::uuid(),
@@ -40,6 +41,7 @@ class PersonalProfileSeeder extends Seeder
                 'birth_place'=> 'lorem 2',
                 'gender'=> 'male',
                 'religion'=> 'islam',
+                'created_at'=> now(),
             ],
             [
                 'uuid'=> Str::uuid(),
@@ -52,6 +54,7 @@ class PersonalProfileSeeder extends Seeder
                 'birth_place'=> 'lorem 3',
                 'gender'=> 'male',
                 'religion'=> 'islam',
+                'created_at'=> now(),
             ],
         ];
 

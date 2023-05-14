@@ -25,6 +25,7 @@ class EmployeeProfileSeeder extends Seeder
                 'institution' => 'SMK Wikrama Bogor',
                 'join_date' => '2019-01-01',
                 'stop_date' => null,
+                'created_at' => now(),
             ],
             [
                 'uuid' => Str::uuid(),
@@ -34,6 +35,7 @@ class EmployeeProfileSeeder extends Seeder
                 'institution' => 'SMK Wikrama Bogor',
                 'join_date' => '2020-01-01',
                 'stop_date' => null,
+                'created_at' => now(),
             ],
             [
                 'uuid' => Str::uuid(),
@@ -43,6 +45,7 @@ class EmployeeProfileSeeder extends Seeder
                 'institution' => 'SMK Wikrama Bogor',
                 'join_date' => '2020-01-01',
                 'stop_date' => null,
+                'created_at' => now(),
             ],
             ];
 

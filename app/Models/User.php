@@ -55,4 +55,20 @@ class User extends Authenticatable
     {
         return $this->hasOne(EmployeeProfile::class, 'user_id', 'id');
     }
+
+    // function boot
+    public static function boot()
+    {
+        parent::boot();
+
+        // create event on saving
+        self::creating(function ($model) {
+            $model->created_at = now();
+        });
+
+        // create event on updating
+        self::updating(function ($model) {
+            $model->updated_at = now();
+        });
+    }
 }

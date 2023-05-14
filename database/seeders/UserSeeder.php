@@ -23,6 +23,7 @@ class UserSeeder extends Seeder
                 'email' => 'admin@mail.com',
                 'password' => Hash::make('password'),
                 'role' => 'admin',
+                'created_at' => now(),
             ],
             [
                 'name' => 'tu',
@@ -30,6 +31,7 @@ class UserSeeder extends Seeder
                 'email' => 'tu@mail.com',
                 'password' => Hash::make('password'),
                 'role' => 'tu',
+                'created_at' => now(),
             ],
             [
                 'name' => 'teacher',
@@ -37,6 +39,7 @@ class UserSeeder extends Seeder
                 'email' => 'teacher@mail.com',
                 'password' => Hash::make('password'),
                 'role' => 'teacher',
+                'created_at' => now(),
             ],
         ];
 
