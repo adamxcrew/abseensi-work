@@ -204,34 +204,61 @@ class RouteController extends Controller
         foreach ($attendancesToday as $key => $valueAttendanceToday) {
             $valueAttendanceToday->presence_status = strtolower($valueAttendanceToday->presence_status);
 
-            if ($valueAttendanceToday->presence_status == 'hadir') {
-                $attendanceCount['hadir']['total']++;
-                array_push($attendanceCount['hadir']['employee_id'], $valueAttendanceToday->employee_id);
-            } elseif ($valueAttendanceToday->presence_status == 'izin') {
-                $attendanceCount['izin']['total']++;
-                array_push($attendanceCount['izin']['employee_id'], $valueAttendanceToday->employee_id);
-            } elseif ($valueAttendanceToday->presence_status == 'sakit') {
-                $attendanceCount['sakit']['total']++;
-                array_push($attendanceCount['sakit']['employee_id'], $valueAttendanceToday->employee_id);
-            } elseif ($valueAttendanceToday->presence_status == 'alpa'&& $employees->has($valueAttendanceToday->employee_id)) {
-                $attendanceCount['alpa']['total']++;
-                array_push($attendanceCount['alpa']['employee_id'], $employees[$valueAttendanceToday->employee_id]->user);
-            } elseif ($valueAttendanceToday->presence_status == 'cuti' && $employees->has($valueAttendanceToday->employee_id)) {
-                $attendanceCount['cuti']['total']++;
-                array_push($attendanceCount['cuti']['employee_id'], $employees[$valueAttendanceToday->employee_id]->user);
-            } elseif ($valueAttendanceToday->presence_status == 'dinas_luar'&& $employees->has($valueAttendanceToday->employee_id)) {
-                $attendanceCount['dinas_luar']['total']++;
-                array_push($attendanceCount['dinas_luar']['employee_id'], $employees[$valueAttendanceToday->employee_id]->user);
+            switch ($valueAttendanceToday->presence_status) {
+                case 'hadir':
+                    $attendanceCount['hadir']['total']++;
+                    array_push($attendanceCount['hadir']['employee_id'], $valueAttendanceToday->employee_id);
+                    $attendanceCount['total']['total']++;
+                    array_push($attendanceCount['total']['employee_id'], $employees[$valueAttendanceToday->employee_id]->user);
+                    break;
+                case 'izin':
+                    $attendanceCount['izin']['total']++;
+                    array_push($attendanceCount['izin']['employee_id'], $valueAttendanceToday->employee_id);
+                    $attendanceCount['total']['total']++;
+                    array_push($attendanceCount['total']['employee_id'], $employees[$valueAttendanceToday->employee_id]->user);
+                    break;
+                case 'sakit':
+                    $attendanceCount['sakit']['total']++;
+                    array_push($attendanceCount['sakit']['employee_id'], $valueAttendanceToday->employee_id);
+                    $attendanceCount['total']['total']++;
+                    array_push($attendanceCount['total']['employee_id'], $employees[$valueAttendanceToday->employee_id]->user);
+                    break;
+                case 'alpa':
+                    if ($employees->has($valueAttendanceToday->employee_id)) {
+                        $attendanceCount['alpa']['total']++;
+                        array_push($attendanceCount['alpa']['employee_id'], $employees[$valueAttendanceToday->employee_id]->user);
+                    } else {
+                        $attendanceCount['alpa']['total']++;
+                        array_push($attendanceCount['alpa']['employee_id'], $valueAttendanceToday->employee_id);
+                    }
+                    $attendanceCount['total']['total']++;
+                    break;
+                case 'cuti':
+                    if ($employees->has($valueAttendanceToday->employee_id)) {
+                        $attendanceCount['cuti']['total']++;
+                        array_push($attendanceCount['cuti']['employee_id'], $employees[$valueAttendanceToday->employee_id]->user);
+                    } else {
+                        $attendanceCount['cuti']['total']++;
+                        array_push($attendanceCount['cuti']['employee_id'], $valueAttendanceToday->employee_id);
+                    }
+                    $attendanceCount['total']['total']++;
+                    break;
+                case 'dinas_luar':
+                    if ($employees->has($valueAttendanceToday->employee_id)) {
+                        $attendanceCount['dinas_luar']['total']++;
+                        array_push($attendanceCount['dinas_luar']['employee_id'], $employees[$valueAttendanceToday->employee_id]->user);
+                    } else {
+                        $attendanceCount['dinas_luar']['total']++;
+                        array_push($attendanceCount['dinas_luar']['employee_id'], $valueAttendanceToday->employee_id);
+                    }
+                    $attendanceCount['total']['total']++;
+                    break;
             }
 
             if (!$valueAttendanceToday->clock_in && !$valueAttendanceToday->clock_out) {
                 $attendanceCount['alpa']['total']++;
                 array_push($attendanceCount['alpa']['employee_id'], $valueAttendanceToday->employee_id);
-            }
-
-            if ($valueAttendanceToday->presence_status == 'hadir') {
-                $attendanceCount['total']['total'] = $attendanceCount['hadir']['total'] + $attendanceCount['izin']['total'] + $attendanceCount['sakit']['total'] + $attendanceCount['cuti']['total'];
-                array_push($attendanceCount['total']['employee_id'], $employees[$valueAttendanceToday->employee_id]->user);
+                $attendanceCount['total']['total']++;
             }
         }
 
