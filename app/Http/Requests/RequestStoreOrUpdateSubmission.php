@@ -26,8 +26,8 @@ class RequestStoreOrUpdateSubmission extends FormRequest
         return [
             'employee_id' => 'required|numeric',
             'submission_type' => 'required|numeric',
-            'start_timeoff' => 'required|date',
-            'finish_timeoff' => 'required|date',
+            'start_timeoff' => 'required|date|before:today',
+            'finish_timeoff' => 'required|date|after:start_timeoff',
             'submission_desc' => 'required|string',
             'submission_file' => 'required|file',
         ];
@@ -53,7 +53,9 @@ class RequestStoreOrUpdateSubmission extends FormRequest
             'submission_desc.string' => 'Kolom ini harus berupa string',
             'submission_file.required' => 'Kolom ini tidak boleh kosong',
             'submission_file.string' => 'Kolom ini harus berupa string',
-            'submission_file.file' => 'Kolom ini harus berupa file'
+            'submission_file.file' => 'Kolom ini harus berupa file',
+            'start_timeoff.before' => 'Tanggal tidak boleh hari ini',
+            'finish_timeoff.after' => 'Tanggal tidak boleh kurang dari tanggal mulai',
         ];
     }
 }

@@ -46,13 +46,13 @@
                 <div class="row no-gutters align-items-center">
                    <div class="col adjust-card">
                       <div class="text-md label-dashboard">
-                         Terlambat
+                         Total Absensi
                          <div class="mini-label dateLocal">
-                            <?= date('d F Y') ?>
+                            {{ $datePickedFormated }}
                          </div>
                       </div>
                       <button class="h3 mb-0 text-primary label-angka" data-toggle="modal"
-                         data-target="#modalTerlambat">3</button>
+                         data-target="#modalTerlambat">{{ $attendanceCount['total'] }}</button>
                       <div class="text-md mb-0 label-dashboard-bawah">Pegawai</div>
                    </div>
                    <div class="col-auto adjust-chart">
@@ -70,7 +70,7 @@
                 <div class="modal-header">
                    <div class="col">
                       <h5 class="modal-title text-center dateLocalTerlambat" id="modalToggleLabel">
-                         <?= date('d F Y') ?>
+                         {{ $datePickedFormated }}
                       </h5>
                    </div>
                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
@@ -126,11 +126,11 @@
                       <div class="text-md label-dashboard">
                          Tidak Hadir
                          <div class="mini-label dateLocal">
-                            <?= date('d F Y') ?>
+                            {{ $datePickedFormated }}
                          </div>
                       </div>
                       <button class="h3 mb-0 text-primary label-angka" data-toggle="modal"
-                         data-target="#modalTidakHadir">10</button>
+                         data-target="#modalTidakHadir">{{ $attendanceCount['alpa'] }}</button>
                       <div class="text-md mb-0 label-dashboard-bawah">Pegawai</div>
                    </div>
                    <div class="col-auto adjust-chart">
@@ -255,11 +255,11 @@
                       <div class="text-md label-dashboard">
                          Cuti
                          <div class="mini-label dateLocal">
-                            <?= date('d F Y') ?>
+                            {{ $datePickedFormated }}
                          </div>
                       </div>
                       <button class="h3 mb-0 text-primary label-angka" data-toggle="modal"
-                         data-target="#modalCuti">5</button>
+                         data-target="#modalCuti">{{ $attendanceCount['cuti'] }}</button>
                       <div class="text-md mb-0 label-dashboard-bawah">Pegawai</div>
                    </div>
                    <div class="col-auto adjust-chart">
@@ -277,7 +277,7 @@
                 <div class="modal-header">
                    <div class="col">
                       <h5 class="modal-title text-center dateLocalCuti" id="modalToggleLabel">
-                         <?= date('d F Y') ?>
+                         {{ $datePickedFormated }}
                       </h5>
                    </div>
                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
@@ -348,7 +348,7 @@
                       <div class="text-md label-dashboard">
                          Dinas Luar
                          <div class="mini-label dateLocal">
-                            <?= date('d F Y') ?>
+                            {{ $datePickedFormated }}
                          </div>
                       </div>
                       <button class="h3 mb-0 text-primary label-angka" data-toggle="modal"
@@ -371,7 +371,7 @@
              <div class="modal-header">
                 <div class="col">
                    <h5 class="modal-title text-center dateLocalDinasLuar" id="modalToggleLabel">
-                      <?= date('d F Y') ?>
+                      {{ $datePickedFormated }}
                    </h5>
                 </div>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
@@ -455,31 +455,31 @@
                       <p>Admin</p>
                    </div>
                    <div class="col">
-                      <p>20 Pegawai</p>
-                      <p>5 Pegawai</p>
-                      <p>1 Pegawai</p>
+                      <p>{{$officerLevelData['teacher']['total']}} Pegawai</p>
+                      <p>{{$officerLevelData['tu']['total']}} Pegawai</p>
+                      <p>{{$officerLevelData['admin']['total']}} Pegawai</p>
                    </div>
                    <div class="col">
-                      <p>80%</p>
-                      <p>10%</p>
-                      <p>1%</p>
+                      <p>{{ $officerLevelData['teacher']['persentase'] }}%</p>
+                      <p>{{ $officerLevelData['tu']['persentase'] }}%</p>
+                      <p>{{ $officerLevelData['admin']['persentase'] }}%</p>
                    </div>
                    <div class="col">
                       <div class="progress mb-4 pointer" data-toggle="tooltip" data-placement="right"
-                         title="Direksi : 5">
-                         <div class="progress-bar bg-red" role="progressbar" style="width: 80%" aria-valuenow="20"
+                         title="Guru : {{ $officerLevelData['teacher']['total'] }}">
+                         <div class="progress-bar bg-red" role="progressbar" style="width: {{ $officerLevelData['teacher']['persentase'] }}%" aria-valuenow="20"
                             aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
 
                       <div class="progress mb-4 pointer" data-toggle="tooltip" data-placement="right"
-                         title="Manajemen : 10">
-                         <div class="progress-bar bg-green" role="progressbar" style="width: 10%" aria-valuenow="20"
+                         title="Tata Usaha : {{ $officerLevelData['tu']['total'] }}">
+                         <div class="progress-bar bg-green" role="progressbar" style="width: {{ $officerLevelData['tu']['persentase'] }}%" aria-valuenow="20"
                             aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
 
                       <div class="progress mb-4 pointer" data-toggle="tooltip" data-placement="right"
-                         title="Pengawas : 20">
-                         <div class="progress-bar bg-blue" role="progressbar" style="width: 1%" aria-valuenow="20"
+                         title="Admin : {{ $officerLevelData['admin']['total'] }}">
+                         <div class="progress-bar bg-blue" role="progressbar" style="width: {{ $officerLevelData['admin']['persentase'] }}%" aria-valuenow="20"
                             aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                    </div>
@@ -502,38 +502,27 @@
                 <div class="row">
                    <div class="col-md-9">
                       <div class="progress mb-4 pointer" data-toggle="tooltip" data-placement="top"
-                         title="Permanen : 40">
-                         <div class="progress-bar bg-blue" id="bar-permanen" role="progressbar" style="width: 40%"
+                         title="Permanen : {{ $statsOfficerData['tetap']['total'] }}">
+                         <div class="progress-bar bg-blue" id="bar-permanen" role="progressbar" style="width: {{ $statsOfficerData['tetap']['persentase'] }}%"
                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                          </div>
                       </div>
                       <div class="progress mb-4 pointer" data-toggle="tooltip" data-placement="right"
-                         title="Percobaan : 20">
-                         <div class="progress-bar bg-green" role="progressbar" style="width: 20%" aria-valuenow="20"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <div class="progress mb-4 pointer" data-toggle="tooltip" data-placement="right"
-                         title="Kontrak : 35">
-                         <div class="progress-bar bg-yellow" role="progressbar" style="width: 30%" aria-valuenow="20"
+                         title="Percobaan : {{ $statsOfficerData['kontrak']['total'] }}">
+                         <div class="progress-bar bg-green" role="progressbar" style="width: {{ $statsOfficerData['kontrak']['persentase'] }}%" aria-valuenow="20"
                             aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
 
                    </div>
                    <div class="col-md-3">
-                      <p class="label-persen-chart">40%</p>
-                      <p class="label-persen-chart">20%</p>
-                      <p class="label-persen-chart adjust-label">35%</p>
+                      <p class="label-persen-chart">{{ $statsOfficerData['tetap']['persentase'] }}%</p>
+                      <p class="label-persen-chart">{{ $statsOfficerData['kontrak']['persentase'] }}%</p>
                    </div>
                 </div>
                 <div class="row">
                    <div class="d-flex justify-content-between">
                       <h5 class="body-text"><i class="fas fa-circle text-primary"></i> Permanen</h5>
                       <h5 class="body-text"><i class="fas fa-circle text-success"></i> Percobaan</h5>
-                   </div>
-                </div>
-                <div class="row">
-                   <div class="d-flex justify-content-between">
-                      <h5 class="body-text"><i class="fas fa-circle text-warning"></i> Kontrak</h5>
                    </div>
                 </div>
              </div>
@@ -556,14 +545,14 @@
              <!--  -->
              <!-- CARD BODY -->
              <div class="card-body">
-                <canvas id="myDoughChart" width="200%" height="300"></canvas>
+                <canvas id="gendersChart" width="200%" height="300"></canvas>
              </div>
              <div class="small text-center adjust-legend">
                 <span class="mx-3">
-                   <i class="fas fa-circle bg-green"></i> 70%
+                   <i class="fas fa-circle bg-green"></i> {{ $gendersOfficerData['male']['persentase'] }}%
                 </span>
                 <span class="mx-3">
-                   <i class="fas fa-circle bg-yellow"></i> 30%
+                   <i class="fas fa-circle bg-yellow"></i> {{ $gendersOfficerData['female']['persentase'] }}%
                 </span>
 
              </div>
@@ -646,6 +635,9 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script>
+    var gendersOfficerData = @json($gendersOfficerData);
+</script>
 <script type="text/javascript">
    Highcharts.chart('myChart', {
       chart: {
@@ -673,5 +665,36 @@
          data: [49.9, 71.5, 106.4]
       }]
    });
+
+   var ctx = document.getElementById("gendersChart");
+    var myDoughChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ["Laki - laki", "Perempuan"],
+        datasets: [{
+        data: [gendersOfficerData.male.total, gendersOfficerData.female.total,],
+        backgroundColor: ['#4CAF50', '#FFC107'],
+        hoverBackgroundColor: ['#4CAF50', '#FFC107'],
+        hoverBorderColor: ['#4CAF50', '#FFC107'],
+        }],
+    },
+    options: {
+        maintainAspectRatio: false,
+        tooltips: {
+        backgroundColor: "rgb(255,255,255)",
+        bodyFontColor: "#858796",
+        borderColor: '#dddfeb',
+        borderWidth: 1,
+        xPadding: 15,
+        yPadding: 15,
+        displayColors: false,
+        caretPadding: 10,
+        },
+        legend: {
+        display: true
+        },
+        cutoutPercentage: 80,
+    },
+    });
 </script>
 @endsection
